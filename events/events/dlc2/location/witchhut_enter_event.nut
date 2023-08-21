@@ -66,17 +66,42 @@ this.witchhut_enter_event <- this.inherit("scripts/events/event", {
 			],
 			function start( _event )
 			{
-				if (this.item != null && this.item.getID() == "accessory.legend_oms_amphora" || "accessory.legend_oms_fate" || "accessory.legend_oms_tome" || "accessory.legend_oms_paw" || "accessory.legend_oms_rib")
-				{
-					this.Options.push({
-						Text = "Can you tell me what this relic does?",
-						function getResult( _event )
-						{
-							this.World.Flags.set("Item Identified", true);
-							return "Relic_identify";
-						}
+				local brothers = this.World.getPlayerRoster().getAll();
 
-					});
+				foreach( bro in brothers )
+				{
+					local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
+
+					if (item != null && item.getID() == "accessory.legend_oms_amphora" || item.getID() == "accessory.legend_oms_fate" || item.getID() == "accessory.legend_oms_tome" || item.getID() == "accessory.legend_oms_paw" || item.getID() == "accessory.legend_oms_rib")
+					{
+						this.Options.push({
+							Text = "Can tell me what this relic does?",
+							function getResult( _event )
+							{
+								this.World.Flags.set("Item Identified", true);
+								return "Relic_identify";
+							}
+
+						});
+					}
+				}
+
+				foreach( item in this.stash )
+				{
+					local stash = this.World.Assets.getStash().getItems();
+
+					if (item != null && item.getID() == "accessory.legend_oms_amphora" || item.getID() == "accessory.legend_oms_fate" || item.getID() == "accessory.legend_oms_tome" || item.getID() == "accessory.legend_oms_paw" || item.getID() == "accessory.legend_oms_rib")
+					{
+						this.Options.push({
+							Text = "Can tell me what this relic does?",
+							function getResult( _event )
+							{
+								this.World.Flags.set("Item Identified", true);
+								return "Relic_identify";
+							}
+
+						});
+					}
 				}
 			}
 

@@ -1,0 +1,580 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			14.02.2017
+ *  @Description:	Defines all Controls used by the UI
+ */
+
+/* TODO:
+	+ Progressbars im Tactical und Tooltip auf neue Progressbar Komponente und dessen Farben umstellen!
+*/
+
+.ui-control
+{
+
+}
+
+/*
+	Progressbars
+*/
+.ui-control-stats-progressbar-container,
+.ui-control-stats-progressbar,
+.ui-control-stats-progressbar-preview
+{
+	/*border-radius: 10px 10px 10px 10px;*/
+}
+
+.ui-control-stats-progressbar-container
+{
+	/*background-color: rgba(100, 100, 100, 0.8);
+	border: 1px rgba(130, 130, 130, 1) solid;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
+	background-image: url("coui://gfx/ui/skin/bar_empty.png");
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.armor-head,
+.ui-control-stats-progressbar-preview.armor-head
+{	
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.armor-body,
+.ui-control-stats-progressbar-preview.armor-body
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.hitpoints,
+.ui-control-stats-progressbar-preview.hitpoints
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_health.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.action-points
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_action_preview.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar-preview.action-points
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_action.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.morale,
+.ui-control-stats-progressbar-preview.morale
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_morale.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.fatigue
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_fatigue_preview.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar-preview.fatigue
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_fatigue.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.melee-skill,
+.ui-control-stats-progressbar-preview.melee-skill
+{
+	background-color: #7a1e12;
+}
+
+.ui-control-stats-progressbar.range-skill,
+.ui-control-stats-progressbar-preview.range-skill
+{
+	background-color: #7a1e12;
+}
+
+.ui-control-stats-progressbar.melee-defense,
+.ui-control-stats-progressbar-preview.melee-defense
+{
+	background-color: #745B37;
+}
+
+.ui-control-stats-progressbar.range-defense,
+.ui-control-stats-progressbar-preview.range-defense
+{
+	background-color: #745B37;
+}
+
+.ui-control-stats-progressbar.sight-distance,
+.ui-control-stats-progressbar-preview.sight-distance
+{
+	background-color: #5686BB;
+}
+
+.ui-control-stats-progressbar.regular-damage,
+.ui-control-stats-progressbar-preview.regular-damage
+{
+	background-color: #B31F1F;
+}
+
+.ui-control-stats-progressbar.crushing-damage,
+.ui-control-stats-progressbar-preview.crushing-damage
+{
+	background-color: #B31F1F;
+}
+
+.ui-control-stats-progressbar.chance-to-hit-head,
+.ui-control-stats-progressbar-preview.chance-to-hit-head
+{
+	background-color: #460A0A;
+}
+
+.ui-control-stats-progressbar.initiative,
+.ui-control-stats-progressbar-preview.initiative
+{
+	background-color: #D1A639;
+}
+
+.ui-control-stats-progressbar.bravery,
+.ui-control-stats-progressbar-preview.bravery
+{
+	background-color: #826800;
+}
+
+/* Large and Slim */
+
+.ui-control-stats-progressbar-container-slim
+{
+	background-image: url("coui://gfx/ui/skin/bar_empty_196.png");
+	background-size: 19.6rem 2.0rem;
+}
+
+.ui-control-stats-progressbar.armor-head-slim,
+.ui-control-stats-progressbar-preview.armor-head-slim
+{	
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
+}
+
+.ui-control-stats-progressbar.armor-body-slim,
+.ui-control-stats-progressbar-preview.armor-body-slim
+{	
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
+}
+
+.ui-control-stats-progressbar.hitpoints-slim,
+.ui-control-stats-progressbar-preview.hitpoints-slim
+{	
+	background-image: url("coui://gfx/ui/skin/bar_fill_health_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
+}
+
+.ui-control-stats-progressbar.morale-slim,
+.ui-control-stats-progressbar-preview.morale-slim
+{	
+	background-image: url("coui://gfx/ui/skin/bar_fill_morale_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
+}
+
+.ui-control-stats-progressbar.fatigue-slim,
+.ui-control-stats-progressbar-preview.fatigue-slim
+{	
+	background-image: url("coui://gfx/ui/skin/bar_fill_fatigue_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
+}
+
+/* Relations */
+
+.ui-control-stats-progressbar-container-relations
+{
+	background-image: url("coui://gfx/ui/skin/relations_bar_empty.png");
+	background-repeat: no-repeat;
+	background-size: 30.5rem 2.6rem;
+}
+
+.ui-control-stats-progressbar.relations
+{	
+	background-image: url("coui://gfx/ui/skin/relations_bar_fill.png");
+	background-repeat: no-repeat;
+	background-size: 30.5rem 2.6rem;
+}
+
+/* Add slim stripe for remaining action points */
+.ui-control-stats-progressbar.action-points-slim,
+.ui-control-stats-progressbar-preview.action-points-slim
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_action_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
+}
+
+/*
+	Dialog Specific
+*/
+.ui-control-dialog-header
+{
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	
+}
+
+.ui-control-dialog-footer
+{
+	/*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+
+}
+
+
+
+/*
+	Tab-Button
+*/
+.ui-control-tab-button
+{
+	background-color: rgba(90, 90, 90, 0.8);
+	
+	border: 1px rgba(130, 130, 130, 1) solid;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);
+
+	color : #DAA520;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.ui-control-tab-button:hover,
+.ui-control-tab-button.is-selected
+{
+	background-color: rgba(120, 120, 120, 0.8);
+}
+
+.ui-control-close-button
+{
+	background-color: rgba(210, 30, 30, 0.8);
+	
+	border: 1px rgba(130, 130, 130, 1) solid;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);
+
+	color : #000000;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.ui-control-close-button:hover
+{
+	background-color: rgba(250, 50, 50, 0.8);
+}
+
+
+/*
+	Button
+*/
+.ui-control-button
+{
+	width   : 12.0rem;
+	height  : 2.8rem;
+	position: relative;
+
+	background-color: rgba(90, 90, 90, 1);
+	border: 1px rgba(130, 130, 130, 1) solid;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);
+
+	color : #DAA520;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.ui-control-button:hover,
+.ui-control-button.is-selected
+{
+	background-color: rgba(120, 120, 120, 1);
+}
+
+.ui-control-button:active
+{
+	background-color: rgba(160, 160, 160, 1);
+	text-shadow: 2px 2px 1px #000;
+}
+
+.ui-control-button[disabled]
+{
+	background-color: rgba(60, 60, 60, 1);
+	color : #CAA520;
+}
+
+.ui-control-button[disabled]:hover
+{
+	background-color: rgba(60, 60, 60, 1);
+	color : #CAA520;
+}
+
+.ui-control-button[disabled]:active
+{
+	background-color: rgba(60, 60, 60, 1);
+	color : #CAA520;
+}
+
+.ui-control-button > .label
+{
+	top	 : 0;
+	bottom  : 0;
+	left	: 0;
+	right   : 0;
+	width   : 90%;
+	height  : 2.8rem;
+	margin  : auto;
+	position: absolute;
+
+	text-align : center;
+	line-height: 2.8rem;
+}
+
+
+
+
+
+
+/*
+	FPS
+*/
+.ui-control-fps-label
+{
+	color : #B58B15;
+	text-shadow: 1px 1px 1px #000;
+}
+
+
+/*
+	Link
+*/
+.ui-control-text-link
+{
+	color : #C0C0C0; /*#B58B15;*/
+	/*text-shadow: 1px 1px 1px #000;*/
+	text-decoration: none;
+}
+
+.ui-control-text-link:hover
+{
+	color: #D58D15;
+	text-decoration: underline;
+}
+
+
+/*
+	Version
+*/
+.ui-control-version-label
+{
+	color : #C0C0C0; /*#B58B15;*/
+	/*text-shadow: 1px 1px 1px #000;*/
+}
+
+
+
+
+/*
+	Equipment Slots
+*/
+.ui-control-equipment-slot
+{
+	border: 1px rgba(130, 130, 130, 1) solid;
+	/*border-radius: 10px 10px 10px 10px;*/
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.ui-control-equipment-slot:hover,
+.ui-control-equipment-slot.is-selected
+{
+	/*background-color: rgba(100, 20, 20, 0.8);*/
+	background-color: rgba(200, 120, 20, 0.6);
+	box-shadow: inset 0 0 20px rgba(100, 20, 20, 0.8);
+}
+
+
+/*
+	Brother Slots
+*/
+.ui-control-brother-slot
+{
+	border: 1px rgba(130, 130, 130, 1) solid;
+	/*border-radius: 10px 10px 10px 10px;*/
+	/*box-shadow: 2px 2px 4px 1px #000;*/
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.ui-control-brother-slot:hover,
+.ui-control-brother-slot.is-selected
+{
+	background-color: rgba(213, 141, 21, 0.4);
+	box-shadow: inset 0 0 20px rgba(20, 20, 20, 0.8);
+}
+
+.ui-control-brother-slot.is-active
+{
+	background-color: rgba(200, 120, 20, 0.6);
+	box-shadow: inset 0 0 20px rgba(100, 20, 20, 0.8);
+}
+
+.ui-control-brother-slot-name-overlay
+{
+	border-top: 1px rgba(130, 130, 130, 1) solid;
+	/*border-radius: 0 0 10px 10px;*/
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/*
+	Tooltip Module
+*/
+.ui-control-tooltip-module
+{
+	/*background-color: rgba(0, 0, 0, 0.9);
+	border: 1px rgba(130, 130, 130, 0.8) solid;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);*/
+}
+
+.ui-control-tooltip-module-bottom-devider
+{
+	border-bottom: 1px rgba(1, 0, 53, 0.8) solid;
+	padding-bottom: 0.4rem;
+}
+
+.ui-control-tooltip-module-top-devider
+{
+	border-top: 1px rgba(1, 0, 53, 0.8) solid;
+	margin-top: 0.4rem;
+}
+
+.ui-control-tooltip-module-right-devider
+{
+	border-right: 1px rgba(1, 0, 53, 0.8) solid;
+}
+
+
+
+/*
+	Console Specific
+*/
+.ui-control-console-container
+{
+	box-shadow: 0px 1px 2px 2px rgba(10, 10, 10, 0.8);
+	border-bottom: 1px rgba(130, 130, 130, 1) solid;
+}
+
+.ui-control-console-log-container
+{
+	/*border: 1px rgba(130, 130, 130, 0.8) solid;*/
+	box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.ui-control-console-log-entry
+{
+	background-color: rgba(90, 90, 90, 0.2);
+	/*border: 1px rgba(130, 130, 130, 0.4) solid;*/
+	/*box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.6);*/
+}
+
+.ui-control-console-log-entry.is-collapsible:hover
+{
+	background-color: rgba(100, 100, 100, 0.4);
+}
+
+.ui-control-console-log-entry-container
+{
+	background-color: rgba(100, 100, 100, 0.2);
+	/*box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);*/
+}
+
+.ui-control-console-log-entry-sub-container
+{
+	/*
+	background-color: rgba(100, 100, 100, 1);
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+	*/
+}
+
+.ui-control-console-log-entry-container-row
+{
+	/*border: 1px rgba(130, 130, 130, 0.4) solid;*/
+	background-color: rgba(100, 100, 100, 0.2);
+}
+
+.ui-control-console-log-entry-container-row.is-collapsible:hover
+{
+	/*border: 1px rgba(150, 150, 150, 0.4) solid;*/
+	background-color: rgba(120, 120, 120, 0.4);
+}
+
+
+.ui-control-console-options-container
+{
+	border-top: 1px rgba(130, 130, 130, 1) solid;
+	border-left: 1px rgba(130, 130, 130, 1) solid;
+	border-right: 1px rgba(130, 130, 130, 1) solid;
+}
+
+.ui-control-console-toolbar-container
+{
+	border: 1px rgba(130, 130, 130, 1) solid;
+}
+
+.ui-control-console-button
+{
+	width   : 12.0rem;
+	height  : 2.8rem;
+	position: relative;
+
+	background-color: rgba(90, 90, 90, 1);
+	border: 1px rgba(130, 130, 130, 1) solid;
+	border-radius: 0;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 1);
+
+	color : #DAA520;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.ui-control-console-input
+{
+	background-color: rgba(90, 90, 90, 1);
+	border: 1px rgba(130, 130, 130, 1) solid;
+	/*border-radius: 5px 5px 5px 5px;*/
+	box-shadow: inset 0 0 2px rgba(0, 0, 0, 1);
+
+	color : #DAA520;
+	text-shadow: 1px 1px 1px #000;
+
+	outline: none;
+}
+
+.ui-control-console-input:hover
+{
+	background-color: rgba(100, 100, 100, 1);
+	border: 1px rgba(130, 130, 130, 1) solid;
+}
+
+.ui-control-console-input:focus
+{
+	border: 1px rgba(130, 130, 130, 1) solid;
+}

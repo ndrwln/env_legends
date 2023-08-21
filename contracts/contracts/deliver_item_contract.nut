@@ -104,7 +104,7 @@ this.deliver_item_contract <- this.inherit("scripts/contracts/contract", {
 			this.m.DifficultyMult = this.Math.rand(70, 85) * 0.01;
 		}
 
-		this.m.Payment.Pool = this.Math.max(75, distance * (1.0 + modrate) * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentLightMult());
+		this.m.Payment.Pool = this.Math.max(75, distance * (4.0 + modrate) * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentLightMult());
 
 		if (this.Math.rand(1, 100) <= 33)
 		{

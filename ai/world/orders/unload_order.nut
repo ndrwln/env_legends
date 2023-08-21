@@ -15,47 +15,47 @@ this.unload_order <- this.inherit("scripts/ai/world/world_behavior", {
 				continue;
 			}
 
+			local inv = _entity.getStashInventory().getItems();
+
 			if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 			{
 				local origin = _entity.getOrigin();
-				local inv = _entity.getStashInventory().getItems();
-				local tradegoods = 0.0;
-				local profit = 0;
-
-				foreach( item in inv )
-				{
-					if (item.isItemType(this.Const.Items.ItemType.TradeGood))
-					{
-						tradegoods = tradegoods + item.getResourceValue();
-					}
-					else if (item.getValue())
-					{
-						profit = profit + item.getValue() * 0.01;
-					}
-				}
-
-				tradegoods = this.Math.floor(tradegoods);
-				profit = this.Math.floor(profit);
 
 				if (origin != null)
 				{
-					local totalPayment = tradegoods + profit;
-					origin.setResources(origin.getResources() + totalPayment);
-					settlement.setResources(settlement.getResources() + tradegoods);
-					this.logInfo("Unloading caravan with " + inv.len() + " items at " + settlement.getName() + " who now have " + settlement.getResources() + " after paying " + totalPayment + " to the origin town " + origin.getName() + " who now have" + origin.getResources());
+					local investment = _entity.getFlags().getAsInt("CaravanInvestment");
+					local profit = _entity.getFlags().getAsInt("CaravanProfit");
+					origin.addResources(investment + profit);
+					this.logWarning("Unloading caravan with " + inv.len() + " items at " + settlement.getName() + ", the origin town " + origin.getName() + " receives their investment of " + investment + " resources along wiht a profit of " + profit + ", now have " + origin.getResources() + " resources in total");
 				}
 
-				if (inv.len() != 0)
+				foreach( item in inv )
 				{
-					local num = this.Math.min(settlement.getSize() + 1, inv.len());
+					settlement.addImportedProduce(item);
+					this.logWarning("Moving \'" + item.getName() + "\' to " + settlement.getName() + "\'s marketplace");
+				}
 
-					for( local i = 0; i < num; i = i )
+				local storage = settlement.getImportedGoodsInventory().getItems();
+				local marketplace = settlement.getBuilding("building.marketplace");
+
+				if (marketplace != null && storage.len() > ::Const.World.Common.WorldEconomy.ImportedGoodsInventorySizeMax)
+				{
+					local different = storage.len() - ::Const.World.Common.WorldEconomy.ImportedGoodsInventorySizeMax;
+					local newStorage = [];
+
+					foreach( i, item in storage )
 					{
-						local produce = inv.remove(this.Math.rand(0, inv.len() - 1));
-						this.logInfo("Importing \'" + produce.getName() + "\' to " + settlement.getName() + "\'s marketplace");
-						settlement.addImportedProduce(produce);
-						i = ++i;
+						if (i >= different)
+						{
+							newStorage.push(item);
+						}
+						else
+						{
+							marketplace.getStash().add(item);
+						}
 					}
+
+					settlement.getImportedGoodsInventory().assign(newStorage);
 				}
 			}
 			else

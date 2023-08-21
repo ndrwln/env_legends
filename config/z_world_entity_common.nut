@@ -5,6 +5,516 @@ if (!("World" in gt.Const))
 	gt.Const.World <- {};
 }
 
+gt.Const.World.Common.WorldEconomy <- {
+	WeightedContainer = null,
+	PriceLookUp = {},
+	PreferProduceNumMax = 9,
+	ImportedGoodsInventorySizeMax = 50,
+	PriceOfBread = 60,
+	AmountOfLeakedCaravanInventoryInfo = 3,
+	ExpensiveLimitMult = 0.85,
+	OverBudgetPct = 0.1,
+	ProfitPct = 0.4,
+	PreferInvestmentMin = 1,
+	PreferInvestmentMax = 2,
+	DecisionID = {
+		TradeGoods = 0,
+		Foods = 1,
+		Supplies = 2,
+		Weapons = 3,
+		Armors = 4,
+		Exotic = 5,
+		Misc = 6,
+		COUNT = 7
+	},
+	Decisions = [
+		{
+			Weight = 2,
+			Name = "TradeGoods",
+			PreferNum = 2,
+			PreferMax = 5,
+			function IsValid( _item, _shopID )
+			{
+				return _item.isItemType(this.Const.Items.ItemType.TradeGood);
+			}
+
+		},
+		{
+			Weight = 1,
+			Name = "Foods",
+			PreferNum = 5,
+			PreferMax = 20,
+			function IsValid( _item, _shopID )
+			{
+				return _item.isItemType(this.Const.Items.ItemType.Food);
+			}
+
+		},
+		{
+			Weight = 1,
+			Name = "Supplies",
+			PreferNum = 3,
+			PreferMax = 10,
+			function IsValid( _item, _shopID )
+			{
+				return _item.isItemType(this.Const.Items.ItemType.Supply);
+			}
+
+		},
+		{
+			Weight = 1,
+			Name = "Weapons",
+			PreferNum = 2,
+			PreferMax = 7,
+			function IsValid( _item, _shopID )
+			{
+				if (_shopID != "building.weaponsmith" && _shopID != "building.fletcher")
+				{
+					return false;
+				}
+
+				return _item.isItemType(this.Const.Items.ItemType.Ammo) || _item.isItemType(this.Const.Items.ItemType.Weapon);
+			}
+
+		},
+		{
+			Weight = 1,
+			Name = "Armors",
+			PreferNum = 2,
+			PreferMax = 7,
+			function IsValid( _item, _shopID )
+			{
+				if (_shopID != "building.armorsmith" && _shopID != "building.marketplace")
+				{
+					return false;
+				}
+
+				return _item.isItemType(this.Const.Items.ItemType.Armor) || _item.isItemType(this.Const.Items.ItemType.Helmet) || _item.isItemType(this.Const.Items.ItemType.Shield);
+			}
+
+		},
+		{
+			Weight = 2,
+			Name = "Exotic",
+			PreferNum = 2,
+			PreferMax = 10,
+			function IsValid( _item, _shopID )
+			{
+				return _shopID == "building.alchemist" || _shopID == "building.kennel";
+			}
+
+		},
+		{
+			Weight = 1,
+			Name = "Misc",
+			PreferNum = 2,
+			PreferMax = 8,
+			function IsValid( _item, _shopID )
+			{
+				return _item.getValue() >= 150;
+			}
+
+		}
+	],
+	function getWeightContainer( _array = null )
+	{
+		if (this.WeightedContainer == null)
+		{
+			this.WeightedContainer = ::MSU.Class.WeightedContainer();
+		}
+
+		if (_array != null)
+		{
+			this.WeightedContainer.clear();
+			this.WeightedContainer.addArray(_array);
+		}
+
+		return this.WeightedContainer;
+	}
+
+	function calculateTradingBudget( _settlement, _min = -1, _max = -1 )
+	{
+		local mult = 5.0 * (_settlement.getSize() + 1);
+
+		if (_settlement.isMilitary())
+		{
+			mult = mult * 1.75;
+		}
+
+		if (::MSU.isKindOf(_settlement, "city_state"))
+		{
+			mult = mult * 1.75;
+		}
+
+		local budget = ::Math.round(::Math.rand(50, 75) * mult);
+
+		if (_min != -1)
+		{
+			budget = ::Math.max(_min, budget);
+		}
+
+		if (_max != -1)
+		{
+			budget = ::Math.min(_max, budget);
+		}
+
+		return budget;
+	}
+
+	function setupTrade( _party, _settlement, _destination, _fixedBudget = -1, _minBudget = -1, _maxBudget = -1 )
+	{
+		local budget = _fixedBudget != -1 ? _fixedBudget : this.calculateTradingBudget(_settlement, _minBudget, _maxBudget);
+		local result = this.makeTradingDecision(_settlement, budget);
+		local finance = this.getExpectedFinancialReport(_settlement);
+		_settlement.addResources(-finance.Investment);
+		_party.setOrigin(_settlement);
+		_party.getStashInventory().assign(result.Items);
+		_party.getFlags().set("CaravanProfit", finance.Profit);
+		_party.getFlags().set("CaravanInvestment", finance.Investment);
+		this.logWarning("Exporting " + _party.getStashInventory().getItems().len() + " items (" + result.Value + " crowns), focusinng on trading \'" + result.Decision + "\', investing " + finance.Investment + " resources," + " from " + _settlement.getName() + " via a caravan bound for " + _destination.getName() + " town");
+	}
+
+	function getExpectedFinancialReport( _settlement )
+	{
+		local result = {};
+		result.Investment <- ::Math.max(1, ::Math.round(_settlement.getWealthBaseLevel() * ::Math.rand(this.PreferInvestmentMin, this.PreferInvestmentMax) * 0.01));
+		result.Profit <- ::Math.round(result.Investment * this.ProfitPct);
+		return result;
+	}
+
+	function makeTradingDecision( _settlement, _budget )
+	{
+		local decisions = this.compileTradingDecision(_settlement, _budget);
+
+		if (decisions.Potential.len() == 0)
+		{
+			return this.fillWithBreads(_settlement, _budget);
+		}
+
+		local name = this.getWeightContainer(decisions.Potential).roll();
+		local result;
+
+		if (name == "FreshlyProduced")
+		{
+			result = this.gatherProduce(_settlement, _budget);
+		}
+		else
+		{
+			result = this.gatherItems(_settlement, this.DecisionID[name], decisions.ItemList, _budget);
+		}
+
+		result.Items.sort(function ( _item1, _item2 )
+		{
+			if (_item1.getValue() > _item2.getValue())
+			{
+				return -1;
+			}
+			else if (_item1.getValue() < _item2.getValue())
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		});
+		result.Decision <- name;
+		return result;
+	}
+
+	function compileTradingDecision( _settlement, _budget )
+	{
+		local result = {};
+		result.Potential <- [];
+		result.ItemList <- [];
+
+		if (::Math.rand(1, 100) == 1)
+		{
+			return result;
+		}
+
+		local acceptableBudget = ::Math.round(_budget * (1.0 + this.OverBudgetPct));
+		local tooExpensiveLimit = ::Math.round(_budget * this.ExpensiveLimitMult);
+
+		for( local i = 0; i < this.DecisionID.COUNT; i = ++i )
+		{
+			result.ItemList.push({
+				Items = [],
+				Average = 0,
+				Total = 0
+			});
+		}
+
+		foreach( building in _settlement.getBuildings() )
+		{
+			local stash = building.getStash();
+			local shopID = building.getID();
+
+			if (stash == null)
+			{
+				continue;
+			}
+
+			foreach( _item in stash.getItems() )
+			{
+				if (_item == null)
+				{
+					continue;
+				}
+
+				foreach( d in this.Decisions )
+				{
+					if (!d.IsValid(_item, shopID))
+					{
+						continue;
+					}
+
+					local v = _item.getValue();
+
+					if (v >= tooExpensiveLimit)
+					{
+						continue;
+					}
+
+					result.ItemList[this.DecisionID[d.Name]].Total += v;
+					result.ItemList[this.DecisionID[d.Name]].Items.push({
+						Item = _item,
+						Stash = stash
+					});
+				}
+			}
+		}
+
+		foreach( i, list in result.ItemList )
+		{
+			local num = list.Items.len();
+
+			if (num == 0)
+			{
+				continue;
+			}
+
+			list.Average = ::Math.floor(list.Total / num);
+			local a = ::Math.floor(acceptableBudget / list.Average);
+
+			if (a <= 0)
+			{
+				continue;
+			}
+
+			if (a < this.Decisions[i].PreferNum)
+			{
+				for( ; this.Decisions[i].PreferNum - 2 <= 0;  )
+				{
+				}
+
+				for( ; ::Math.rand(a, this.Decisions[i].PreferNum) > this.Decisions[i].PreferNum + ::Math.floor((a - this.Decisions[i].PreferNum) / 2);  )
+				{
+				}
+			}
+
+			result.Potential.push([
+				this.Decisions[i].Weight,
+				this.Decisions[i].Name
+			]);
+		}
+
+		if (_settlement.getProduce().len() > 0)
+		{
+			result.Potential.push([
+				1,
+				"FreshlyProduced"
+			]);
+		}
+
+		return result;
+	}
+
+	function fillWithBreads( _settlement, _budget, _target = null, _isFull = false )
+	{
+		local max = 15;
+
+		if (_target == null)
+		{
+			_target = {
+				Items = [],
+				Value = 0,
+				Decision = "Breads"
+			};
+		}
+		else
+		{
+			max = max - _target.Items.len();
+		}
+
+		if (max <= 0)
+		{
+			return _target;
+		}
+
+		if (_isFull)
+		{
+			max = ::Math.min(2, max);
+		}
+
+		local num = ::Math.min(max, ::Math.max(1, ::Math.floor(_budget / 60)));
+
+		for( local i = 0; i < num; i = ++i )
+		{
+			_target.Items.push(::new("scripts/items/supplies/bread_item"));
+			_target.Value += this.PriceOfBread;
+		}
+
+		return _target;
+	}
+
+	function gatherProduce( _settlement, _budget )
+	{
+		local map = {};
+		local array = [];
+		local extra = ::Math.round(_budget * this.OverBudgetPct);
+		local min = 9999999;
+
+		foreach( p in _settlement.getProduce() )
+		{
+			if (p in map)
+			{
+				map[p][0] += 1;
+				continue;
+			}
+
+			map[p] <- [
+				1,
+				p
+			];
+
+			if (!(p in this.PriceLookUp))
+			{
+				this.PriceLookUp[p] <- ::new("scripts/items/" + p).getValue();
+			}
+
+			if (min > this.PriceLookUp[p])
+			{
+				min = this.PriceLookUp[p];
+			}
+		}
+
+		foreach( k, pair in map )
+		{
+			array.push(pair);
+		}
+
+		local ret = [];
+		local tries = 0;
+		local isOverBudget = false;
+		local weight_container = this.getWeightContainer(array);
+		local result = {
+			Items = [],
+			Value = 0
+		};
+
+		while (tries < 25)
+		{
+			local r = weight_container.roll();
+
+			if (this.PriceLookUp[r] > _budget)
+			{
+				if (isOverBudget || this.PriceLookUp[r] > _budget + extra)
+				{
+					tries = ++tries;
+					weight_container.remove(r);
+
+					if (weight_container.len() == 0)
+					{
+						  // [088]  OP_JMP            0     27    0    0
+					}
+
+					continue;
+				}
+
+				isOverBudget = true;
+				_budget = _budget + extra;
+			}
+
+			result.Items.push(::new("scripts/items/" + r));
+			result.Value += this.PriceLookUp[r];
+			_budget = _budget - this.PriceLookUp[r];
+
+			if (result.Items.len() >= this.PreferProduceNumMax)
+			{
+				break;
+			}
+
+			if (_budget < min)
+			{
+				break;
+			}
+		}
+
+		if (_budget >= this.PriceOfBread)
+		{
+			this.fillWithBreads(_settlement, _budget, result, result.Items.len() >= this.PreferProduceNumMax);
+		}
+
+		return result;
+	}
+
+	function gatherItems( _settlement, _index, _array, _budget )
+	{
+		local result = {
+			Items = [],
+			Value = 0
+		};
+		local extra = ::Math.round(_budget * this.OverBudgetPct);
+		local data = _array[_index];
+		local isOverBudget = false;
+		local tries = 0;
+
+		while (tries < 50 && _budget > data.Average)
+		{
+			local _i = data.Items.remove(::Math.rand(0, data.Items.len() - 1));
+			local v = _i.Item.getValue();
+
+			if (v > _budget)
+			{
+				if (isOverBudget || v > _budget + extra)
+				{
+					tries = ++tries;
+					continue;
+				}
+
+				isOverBudget = true;
+				_budget = _budget + extra;
+			}
+
+			result.Items.push(_i.Item);
+			result.Value += v;
+			_i.Stash.remove(_i.Item);
+			_budget = _budget - v;
+
+			if (data.Items.len() >= this.Decisions[_index].PreferMax)
+			{
+				break;
+			}
+
+			if (data.Items.len() == 0)
+			{
+				break;
+			}
+
+			data.Total -= v;
+			data.Average = ::Math.floor(data.Total / data.Items.len());
+		}
+
+		if (_budget >= this.PriceOfBread)
+		{
+			this.fillWithBreads(_settlement, _budget, result, data.Items.len() >= this.Decisions[_index].PreferMax);
+		}
+
+		return result;
+	}
+
+};
 gt.Const.World.Common.assignTroops = function ( _party, _partyList, _resources, _weightMode = 1 )
 {
 	local p;

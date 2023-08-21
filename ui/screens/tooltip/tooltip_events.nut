@@ -1783,7 +1783,7 @@ this.tooltip_events <- {
 				{
 					id = 1,
 					type = "title",
-					text = "Reputation: " + this.World.Assets.getMoralReputationAsText()
+					text = "Reputation: " + this.World.Assets.getMoralReputationAsText() + " (" + this.World.Assets.getMoralReputation() + ")"
 				},
 				{
 					id = 2,

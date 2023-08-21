@@ -203,10 +203,10 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 							chance = 100;
 						}
 
-						if (this.LegendsMod.Configs().LegendArmorsEnabled())
+						if (this.Math.rand(1, 100) <= chance)
 						{
 							local rune;
-							local variant = this.Math.rand(21, 23);
+							local variant = this.Math.rand(21, 22);
 
 							switch(variant)
 							{
@@ -216,10 +216,6 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 							case 22:
 								rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-								break;
-
-							case 23:
-								rune = this.new("scripts/items/legend_armor/runes/legend_rune_resilience");
 								break;
 							}
 
@@ -231,7 +227,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 						else
 						{
 							local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-							token.setRuneVariant(this.Math.rand(21, 23));
+							token.setRuneVariant(this.Math.rand(21, 22));
 							token.setRuneBonus(true);
 							token.updateRuneSigilToken();
 							token.drop(_tile);
@@ -240,7 +236,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 						if (this.Math.rand(1, 100) <= chance)
 						{
 							local rune;
-							local variant = this.Math.rand(21, 23);
+							local variant = this.Math.rand(21, 22);
 
 							switch(variant)
 							{
@@ -250,10 +246,6 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 							case 22:
 								rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-								break;
-
-							case 23:
-								rune = this.new("scripts/items/legend_armor/runes/legend_rune_resilience");
 								break;
 							}
 
@@ -270,6 +262,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 					}
 
 					i = ++i;
+					i = i;
 				}
 
 				if (!this.Const.DLC.Unhold || this.Math.rand(1, 100) <= 90)
@@ -474,6 +467,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 					}
 
 					i = ++i;
+					i = i;
 				}
 			}
 

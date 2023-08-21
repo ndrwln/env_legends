@@ -1,0 +1,39 @@
+/*
+ *  @Project:		Untitled Project
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			16.10.2013
+ *  @Description:	jquery extensions css
+ */
+
+/**
+ * @Credits: http://davidwalsh.name/detect-node-insertion
+ */
+
+/* set up the keyframes; remember to create prefixed keyframes too! */
+@-webkit-keyframes node-inserted-animation
+{  
+	from { opacity: 0.98; }
+	to { opacity: 0.99; }  
+}
+
+@keyframes node-inserted-animation
+{  
+	from { opacity: 0.98; }
+	to { opacity: 0.99; }  
+}
+
+
+
+.node-inserted-listener
+{
+	-webkit-animation-name: node-inserted-animation;
+	-webkit-animation-duration: 0.001s;
+	-webkit-animation-timing-function: linear;
+
+	animation-duration: 0.001s;
+	animation-name: node-inserted-animation;
+	animation-timing-function: linear;
+}

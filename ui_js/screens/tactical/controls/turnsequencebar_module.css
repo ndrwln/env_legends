@@ -1,0 +1,55 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			14.02.2017
+ *  @Description:	Tactical Screen: TurnSequenceBar Module CSS
+ */
+
+.ui-control.tactical-screen .turnsequencebar-module .status-effects-container
+{
+	/*background-color: rgba(0, 0, 0, 0.8);
+	border: 1px rgba(130, 130, 130, 0.8) solid;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);*/
+}
+
+.ui-control.tactical-screen .turnsequencebar-module .stats-panel
+{
+	/*background-color: rgba(0, 0, 0, 0.8);
+	border: 1px rgba(130, 130, 130, 0.8) solid;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);*/
+}
+
+.ui-control.tactical-screen .turnsequencebar-module .stats-panel > .header
+{
+	/*border-bottom: 1px rgba(130, 130, 130, 0.8) solid;*/
+}
+
+.ui-control.tactical-screen .turnsequencebar-module .bottom-shadow-container
+{
+	/* NOTE: Workaround as box-shadow produces background flicker if a children div is animated */
+   /*background-color: #000;
+	opacity: 0.8;*/
+
+	/*border: 1px rgba(130, 130, 130, 1) solid;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);*/
+
+	background-image: url("coui://gfx/ui/skin/tactical_turnbar.png");
+	background-size: 59.0rem 8.6rem;
+}
+
+.ui-control.tactical-screen .turnsequencebar-module .skills-container
+{
+	/*background-color: rgba(0, 0, 0, 0.8);
+	border: 1px rgba(130, 130, 130, 0.8) solid;
+	border-radius: 10px 10px 10px 10px;*/
+	/* NOTE: (js) Does produce background flicker...
+	box-shadow: 0px -1px 4px 1px #000;
+	*/
+}

@@ -19,7 +19,6 @@ this.have_all_camp_activities_ambition <- this.inherit("scripts/ambitions/ambiti
 			return this.m.TooltipText;
 		}
 
-		local barber = false;
 		local crafting = false;
 		local training = false;
 		local fletching = false;
@@ -28,11 +27,6 @@ this.have_all_camp_activities_ambition <- this.inherit("scripts/ambitions/ambiti
 		local scraping = false;
 		local scouting = false;
 		local ret = this.m.TooltipText + "\n\nSkills we still need to learn.\n";
-
-		if (this.World.Flags.get("HasLegendCampBarber"))
-		{
-			barber = true;
-		}
 
 		if (this.World.Flags.get("HasLegendCampCrafting"))
 		{
@@ -67,11 +61,6 @@ this.have_all_camp_activities_ambition <- this.inherit("scripts/ambitions/ambiti
 		if (this.World.Flags.get("HasLegendCampTraining"))
 		{
 			training = true;
-		}
-
-		if (!barber)
-		{
-			ret = ret + "\n- Barber";
 		}
 
 		if (!crafting)
@@ -114,7 +103,6 @@ this.have_all_camp_activities_ambition <- this.inherit("scripts/ambitions/ambiti
 
 	function hasAllProvisions()
 	{
-		local barber = false;
 		local crafting = false;
 		local training = false;
 		local fletching = false;
@@ -122,11 +110,6 @@ this.have_all_camp_activities_ambition <- this.inherit("scripts/ambitions/ambiti
 		local gathering = false;
 		local scraping = false;
 		local scouting = false;
-
-		if (this.World.Flags.get("HasLegendCampBarber"))
-		{
-			barber = true;
-		}
 
 		if (this.World.Flags.get("HasLegendCampCrafting"))
 		{
@@ -163,7 +146,7 @@ this.have_all_camp_activities_ambition <- this.inherit("scripts/ambitions/ambiti
 			training = true;
 		}
 
-		return barber && crafting && training && fletching && hunting && gathering && scraping && scouting;
+		return crafting && training && fletching && hunting && gathering && scraping && scouting;
 	}
 
 	function onUpdateScore()

@@ -213,7 +213,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				if (bro.getSkills().hasSkill("background.female_miller") || bro.getSkills().hasSkill("background.female_butcher") || bro.getSkills().hasSkill("background.butcher") || bro.getSkills().hasSkill("background.female_servant") || bro.getSkills().hasSkill("background.cannibal"))
 				{
-					this.chefLevel += this.Math.floor(bro.getLevel() * 0.1);
+					brewerLevel = brewerLevel + this.Math.floor(bro.getLevel() * 0.1);
 				}
 			}
 

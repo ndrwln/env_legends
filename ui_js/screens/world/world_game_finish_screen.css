@@ -1,0 +1,85 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			23.11.2017
+ *  @Description:	World Game Finish Screen CSS
+ */
+
+.world-game-finish-screen
+{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+	overflow: hidden;
+}
+
+.world-game-finish-screen .background-image
+{
+	position: absolute;
+	z-index: 1;
+}
+
+.world-game-finish-screen .content-container
+{
+	position: absolute;
+	z-index: 2;
+	width: 50.0rem;
+	/*height: 55.0rem;*/
+	height: 73%;
+	top: 10.0rem;
+	right: 3.0rem;
+
+	/*background-color: red;*/
+}
+
+.world-game-finish-screen .button-container
+{
+	position: absolute;
+	z-index: 2;
+	width: 17.5rem;
+	height: 4.3rem;
+	bottom: 5.0rem;
+	right: 3.0rem;
+}
+
+.world-game-finish-screen .score-container
+{
+	position: absolute;
+	z-index: 2;
+	width: 30.0rem;
+	height: 4.3rem;
+	bottom: 4.1rem;
+	right: 23.0rem;
+}
+
+.world-game-finish-screen > .content-container .l-list-container
+{
+	top: 0rem;
+	left: 0rem;
+	right: 0rem;
+	bottom: 0rem;
+}
+
+.world-game-finish-screen > .content-container .scroll-container
+{
+	/*padding-left: 1.0rem;
+	padding-right: 1.0rem;*/
+}
+
+.world-game-finish-screen > .button-container .l-quit-button
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}

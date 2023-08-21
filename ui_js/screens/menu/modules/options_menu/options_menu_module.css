@@ -1,0 +1,174 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			12.04.2017 (refactored: 03.10.2017)
+ *  @Description:	Options Menu Module CSS
+ */
+
+.options-menu-module
+{
+	top: 0;
+	bottom: 0;
+	/*width: 70.0rem;
+	height: 53.0rem;*/
+	width: 80.0rem;
+	height: 72.0rem;
+	position: absolute;
+	margin: auto;
+	z-index : 1;
+	pointer-events: auto;
+}
+
+.options-menu-module.is-center
+{
+	left: 0;
+	right: 0;
+}
+
+
+.options-menu-module > .dialog .tab-container .l-tab-button-bar
+{
+	top: -0.5rem;
+	left: 4.0rem;
+	right: 2.0rem;
+	bottom: 0;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.options-menu-module > .dialog .tab-container .l-tab-button
+{
+	width: 17.4rem;
+	height: 4.3rem;
+	float: left;
+	margin-right: 0.66rem;
+
+	line-height: 3.0rem;
+}
+
+.options-menu-module > .dialog .tab-container .l-tab-button:last-child
+{
+	margin-right: 0;
+}
+
+
+.options-menu-module > .dialog .content .column
+{
+	width: 40.0rem;
+	height: 100%;
+	float: left;
+}
+
+.options-menu-module > .dialog .content .row
+{
+	width: 38.0rem;
+	float: left;
+	position: relative;
+	padding-top : 1.0rem;
+	padding-left: 2.0rem;
+}
+
+.options-menu-module > .dialog .content .row:first-child
+{
+	margin-top: 1.0rem;
+}
+
+.options-menu-module > .dialog .content .row .title
+{
+	width: 96%;
+	height: 2.0rem;
+	float: left;
+	margin-bottom: 2.0rem;
+
+	line-height: 2.0rem;
+
+	border-image: url("coui://gfx/ui/skin/line_gold.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 0.5rem 0;
+}
+
+.options-menu-module > .dialog .content .row .spacer
+{
+	width: 96%;
+	height: 1.6rem;
+	float: left;
+}
+
+.options-menu-module > .dialog .content .row .control,
+.options-menu-module > .dialog .content .row .sub-control,
+.options-menu-module > .dialog .content .row .volume-control
+{
+	float: left;
+	clear: left;
+	position: relative;
+	margin-left  : 1.0rem;
+	margin-bottom: 2.0rem;
+}
+
+.options-menu-module > .dialog .content .row .sub-control
+{
+	margin-left: 4.4rem;
+}
+
+.options-menu-module > .dialog .content .control label,
+.options-menu-module > .dialog .content .sub-control label
+{
+	top: 0;
+	bottom: 0;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
+	margin-left: 1.4rem;
+
+	white-space: nowrap;
+	line-height: 2.0rem;
+}
+
+
+.options-menu-module > .dialog .footer .l-button-bar
+{
+	top: 0;
+	left: 2.0rem;
+	right: 2.0rem;
+	bottom: 0;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.options-menu-module > .dialog .footer .l-cancel-button
+{
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}
+
+.options-menu-module > .dialog .footer .l-apply-button
+{
+	top: 0;
+	right: 18.0rem;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}
+
+.options-menu-module > .dialog .footer .l-ok-button
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}

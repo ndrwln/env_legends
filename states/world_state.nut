@@ -81,11 +81,10 @@ this.world_state <- this.inherit("scripts/states/state", {
 		Campaign = "",
 		CommanderDied = null,
 		Camp = null,
-		IDToRef = array(27, -1),
+		IDToRef = this.array(27, -1),
 		DistantVisionBonus = false,
-		AppropriateTimeToRecalc = 1 //Leonion's fix
+		AppropriateTimeToRecalc = 1
 	},
-
 	function getPlayer()
 	{
 		return this.m.Player;
@@ -94,13 +93,15 @@ this.world_state <- this.inherit("scripts/states/state", {
 	function getBrothersInReserves()
 	{
 		local count = 0;
-		foreach (bro in this.World.getPlayerRoster().getAll())
+
+		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
 			if (bro.isInReserves())
 			{
 				count++;
 			}
 		}
+
 		return count;
 	}
 
@@ -245,6 +246,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 			if (t.IsDiscovered)
 			{
 				d = ++d;
+				d = d;
 			}
 		}
 
@@ -381,7 +383,9 @@ this.world_state <- this.inherit("scripts/states/state", {
 			}
 			else
 			{
-				this.World.TopbarDayTimeModule.showMessage("PAUSED", ["(Press Spacebar)"]);
+				this.World.TopbarDayTimeModule.showMessage("PAUSED", [
+					"(Press Spacebar)"
+				]);
 			}
 		}
 
@@ -501,7 +505,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 
 	function setCommanderDied( _v )
 	{
-		this.m.CommanderDied = _v
+		this.m.CommanderDied = _v;
 	}
 
 	function onInit()
@@ -1067,6 +1071,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 						{
 							return false;
 						}
+
 						this.onCamp();
 						return true;
 					}
@@ -1082,6 +1087,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 						{
 							return false;
 						}
+
 						this.onCamp();
 						return true;
 					}
@@ -1168,11 +1174,13 @@ this.world_state <- this.inherit("scripts/states/state", {
 		local minX = worldmap.getMinX();
 		local minY = worldmap.getMinY();
 		this.World.resizeScene(minX, minY);
-		this.logInfo("Generating world with following settings...")
-		foreach (k,v in this.Const.World.Settings)
+		this.logInfo("Generating world with following settings...");
+
+		foreach( k, v in this.Const.World.Settings )
 		{
 			this.logInfo(k + " : " + v);
 		}
+
 		worldmap.fill({
 			X = 0,
 			Y = 0,
@@ -1181,7 +1189,6 @@ this.world_state <- this.inherit("scripts/states/state", {
 		}, this.m.CampaignSettings);
 		this.m.Assets.init();
 		this.m.Camp.init();
-		//this.LoadingScreen.updateProgress("Creating Factions ...");
 		this.World.FactionManager.createFactions(this.m.CampaignSettings);
 		this.World.EntityManager.buildRoadAmbushSpots();
 		this.Math.seedRandomString(this.m.CampaignSettings.Seed);
@@ -1277,10 +1284,11 @@ this.world_state <- this.inherit("scripts/states/state", {
 
 	function setNewCampaignSettings( _settings )
 	{
-		foreach(k,v in _settings)
+		foreach( k, v in _settings )
 		{
 			this.logInfo(k + " = " + v);
 		}
+
 		this.m.CampaignSettings = _settings;
 	}
 
@@ -1340,7 +1348,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 		properties.InCombatAlready = false;
 		properties.IsAttackingLocation = false;
 		local factions = [];
-		factions.resize(32, 0); // handled by MSU
+		factions.resize(32, 0);
 
 		foreach( party in raw_parties )
 		{
@@ -1639,22 +1647,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 				else if (party.isAlive() && party.isAlliedWithPlayer() && party.getFlags().get("IsCaravan") && this.m.EscortedEntity == null)
 				{
 					this.World.Statistics.getFlags().set("LastCombatSavedCaravan", true);
-
-					if (this.World.Statistics.getFlags().has("LastCombatSavedCaravanProduce") && typeof this.World.Statistics.getFlags().get("LastCombatSavedCaravanProduce") != "string")
-					{
-						this.World.Statistics.getFlags().remove("LastCombatSavedCaravanProduce");
-					}
-
-					if (party.getStashInventory().getItems().len() != 0)
-					{
-						local prefix = "scripts/items/";
-						local script = this.IO.scriptFilenameByHash(::MSU.Array.rand(party.getStashInventory().getItems()).ClassNameHash);
-						this.World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", script.slice(prefix.len()));
-					}
-					else if (party.getInventory().len() != 0)
-					{
-						this.World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", ::MSU.Array.rand(party.getInventory()));
-					}
+					this.World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", party.getInventory()[this.Math.rand(0, party.getInventory().len() - 1)]);
 				}
 			}
 
@@ -1671,7 +1664,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 				}
 				else
 				{
-					for( local i = 0; i != 6; i = ++i )
+					for( local i = 0; i != 6; i = i )
 					{
 						if (!playerTile.hasNextTile(i))
 						{
@@ -1686,6 +1679,8 @@ this.world_state <- this.inherit("scripts/states/state", {
 								break;
 							}
 						}
+
+						i = ++i;
 					}
 				}
 
@@ -1778,6 +1773,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 			{
 				this.World.TopbarDayTimeModule.updateTimeButtons(0);
 			}
+
 			this.setPause(false);
 		}
 		else
@@ -1794,6 +1790,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 			{
 				this.World.TopbarDayTimeModule.updateTimeButtons(0);
 			}
+
 			this.setPause(true);
 		}
 	}
@@ -2364,7 +2361,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 			});
 		}
 
-		for( local i = 0; i < entityTypes.len(); i = ++i )
+		for( local i = 0; i < entityTypes.len(); i = i )
 		{
 			if (entityTypes[i] > 0)
 			{
@@ -2393,6 +2390,8 @@ this.world_state <- this.inherit("scripts/states/state", {
 					});
 				}
 			}
+
+			i = ++i;
 		}
 
 		if (!hasOpponents)
@@ -2494,7 +2493,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 			sounds.extend(this.Const.SoundAmbience.TerrainAtNight[playerTile.Type]);
 		}
 
-		for( local i = 0; i != 6; i = ++i )
+		for( local i = 0; i != 6; i = i )
 		{
 			if (!playerTile.hasNextTile(i))
 			{
@@ -2507,6 +2506,8 @@ this.world_state <- this.inherit("scripts/states/state", {
 			{
 				sounds.extend(this.Const.SoundAmbience.TerrainAtNight[playerTile.getNextTile(i).Type]);
 			}
+
+			i = ++i;
 		}
 
 		return sounds;
@@ -2527,7 +2528,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 			}
 		}
 
-		for( local i = 0; i != 6; i = ++i )
+		for( local i = 0; i != 6; i = i )
 		{
 			if (!playerTile.hasNextTile(i))
 			{
@@ -2549,6 +2550,8 @@ this.world_state <- this.inherit("scripts/states/state", {
 					}
 				}
 			}
+
+			i = ++i;
 		}
 
 		return sounds;
@@ -2637,30 +2640,21 @@ this.world_state <- this.inherit("scripts/states/state", {
 		if (this.World.Camp.isCamping())
 		{
 			this.onCamp();
-			return
+			return;
 		}
-		//this.Music.setTrackList(this.m.LastEnteredTown.getMusic(), this.Const.Music.CrossFadeTime);
+
 		this.setPause(true);
 		this.setAutoPause(true);
 		this.Tooltip.hide();
 		this.m.WorldScreen.hide();
-		//this.m.WorldTownScreen.setTown(this.m.LastEnteredTown);
 		this.m.CampScreen.show();
 		this.Cursor.setCursor(this.Const.UI.Cursor.Hand);
 		this.Sound.setAmbience(0, this.getSurroundingAmbienceSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceTerrainInSettlement, this.World.getTime().IsDaytime ? this.Const.Sound.AmbienceMinDelay : this.Const.Sound.AmbienceMinDelayAtNight);
-		//this.Sound.setAmbience(1, this.m.LastEnteredTown.getSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceInSettlement, this.World.getTime().IsDaytime ? this.Const.Sound.AmbienceMinDelay : this.Const.Sound.AmbienceMinDelayAtNight);
 		this.m.MenuStack.push(function ()
 		{
 			this.Sound.setAmbience(0, this.getSurroundingAmbienceSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceTerrain, this.World.getTime().IsDaytime ? this.Const.Sound.AmbienceMinDelay : this.Const.Sound.AmbienceMinDelayAtNight);
 			this.Sound.setAmbience(1, this.getSurroundingLocationSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceOutsideSettlement, this.Const.Sound.AmbienceOutsideDelay);
 			this.World.getCamera().zoomTo(this.m.CustomZoom, 4.0);
-			// this.World.Assets.consumeItems();
-			// this.World.Assets.refillAmmo();
-			// this.World.Assets.updateAchievements();
-			// this.World.Assets.checkAmbitionItems();
-			// this.World.Ambitions.resetTime(false, 2.0);
-			// this.updateTopbarAssets();
-			// this.World.State.getPlayer().updateStrength();
 			this.m.CampScreen.clear();
 			this.m.CampScreen.hide();
 			this.m.WorldScreen.show();
@@ -2702,7 +2696,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 
 	function camp_screen_main_dialog_module_onTentButtonClicked( _id )
 	{
-		this.showTentScreenFromCamp( _id );
+		this.showTentScreenFromCamp(_id);
 	}
 
 	function initLoadingScreenHandler()
@@ -2838,7 +2832,6 @@ this.world_state <- this.inherit("scripts/states/state", {
 		});
 	}
 
-
 	function showCharacterScreenFromCamp()
 	{
 		this.World.Assets.updateFormation();
@@ -2857,7 +2850,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 	function showCommanderScreenFromCamp()
 	{
 		this.m.CampScreen.hideAllDialogs();
-		this.m.CampScreen.showCommanderDialog()
+		this.m.CampScreen.showCommanderDialog();
 		this.m.MenuStack.push(function ()
 		{
 			this.m.CampScreen.showLastReturnDialog();
@@ -2870,7 +2863,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 	function showTentScreenFromCamp( _id )
 	{
 		this.m.CampScreen.hideAllDialogs();
-		this.m.CampScreen.showTentBuildingDialog( _id )
+		this.m.CampScreen.showTentBuildingDialog(_id);
 		this.m.MenuStack.push(function ()
 		{
 			this.m.CampScreen.showLastReturnDialog();
@@ -3414,11 +3407,6 @@ this.world_state <- this.inherit("scripts/states/state", {
 			break;
 
 		case 25:
-			// if (!this.m.IsDeveloperModeEnabled)
-			// {
-			// 	break;
-			// }
-
 			if (this.m.LastTileHovered != null)
 			{
 				local faction = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits);
@@ -3504,11 +3492,12 @@ this.world_state <- this.inherit("scripts/states/state", {
 
 		if (this.isInDevScreen())
 		{
-			switch(_key.getKey())
+			if (_key.getKey() == 41)
 			{
-			case 41:
 				this.m.WorldScreen.hideDevConsole();
-				break;
+			}
+			else
+			{
 			}
 
 			return true;
@@ -3534,7 +3523,6 @@ this.world_state <- this.inherit("scripts/states/state", {
 			case 41:
 				this.toggleCharacterScreen();
 				break;
-
 
 			case 29:
 				this.m.CharacterScreen.toggleBrotherReserves();
@@ -3613,10 +3601,6 @@ this.world_state <- this.inherit("scripts/states/state", {
 				if (!this.m.MenuStack.hasBacksteps())
 				{
 					this.showCampScreen();
-					// if (this.isCampingAllowed())
-					// {
-					// 	this.onCamp();
-					// }
 				}
 
 				break;
@@ -3627,6 +3611,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 					this.m.WorldScreen.showDevConsole();
 					return true;
 				}
+
 				break;
 
 			case 26:
@@ -3865,14 +3850,23 @@ this.world_state <- this.inherit("scripts/states/state", {
 
 	function getRefFromID( _id )
 	{
-		if (_id == -1) return null;
+		if (_id == -1)
+		{
+			return null;
+		}
 
-		if (_id > this.m.IDToRef.len() - 1) return null;
+		if (_id > this.m.IDToRef.len() - 1)
+		{
+			return null;
+		}
 
 		local val = this.m.IDToRef[_id];
-		if (val == -1) {
-			return null
+
+		if (val == -1)
+		{
+			return null;
 		}
+
 		return val;
 	}
 
@@ -3881,9 +3875,9 @@ this.world_state <- this.inherit("scripts/states/state", {
 		this.m.IDToRef[_id] = -1;
 	}
 
-	function addNewID( _actor ) //return the id we gave and also put wtr into id slot
+	function addNewID( _actor )
 	{
-		for ( local i = 0; i < 27; i++ )
+		for( local i = 0; i < 27; i++ )
 		{
 			if (this.m.IDToRef[i] == -1)
 			{
@@ -3975,12 +3969,11 @@ this.world_state <- this.inherit("scripts/states/state", {
 		_out.writeBool(this.m.IsCampingAllowed);
 		_out.writeI32(this.m.CombatSeed);
 		this.World.Camp.onSerialize(_out);
-
 	}
 
 	function onDeserialize( _in )
 	{
-		this.World.State.m.AppropriateTimeToRecalc = 0;	//Leonion's fix
+		this.World.State.m.AppropriateTimeToRecalc = 0;
 		this.Sound.stopAmbience();
 		this.m.Player = this.World.getPlayerEntity();
 
@@ -3988,7 +3981,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 		{
 			local numRegions = _in.readU16();
 
-			for( local i = 0; i < numRegions; i = ++i )
+			for( local i = 0; i < numRegions; i = i )
 			{
 				local region = {};
 				region.Name <- _in.readString();
@@ -4009,16 +4002,16 @@ this.world_state <- this.inherit("scripts/states/state", {
 
 				region.Tiles <- [];
 				this.m.Regions.push(region);
+				i = ++i;
 			}
 		}
+
 		this.World.Flags.onDeserialize(_in);
 		this.World.FactionManager.onDeserialize(_in);
 		this.World.EntityManager.onDeserialize(_in);
 		this.World.Assets.onDeserialize(_in);
-
 		this.m.Combat = this.new("scripts/entity/world/combat_manager");
 		this.World.Combat <- this.WeakTableRef(this.m.Combat);
-
 		this.World.Combat.onDeserialize(_in);
 		this.World.Contracts.onDeserialize(_in);
 		this.World.Events.onDeserialize(_in);
@@ -4074,6 +4067,7 @@ this.world_state <- this.inherit("scripts/states/state", {
 		this.updateDayTime();
 		this.updateTopbarAssets();
 		this.m.IsUpdatedOnce = false;
+
 		if (this.m.EscortedEntity == null)
 		{
 			this.World.State.setCampingAllowed(true);
@@ -4087,8 +4081,9 @@ this.world_state <- this.inherit("scripts/states/state", {
 			this.World.Camp.clear();
 			this.World.Camp.onDeserialize(_in);
 		}
-		this.World.State.m.AppropriateTimeToRecalc = 1;	//Leonion's fix
-		this.World.State.getPlayer().calculateModifiers(); //Leonion's fix
+
+		this.World.State.m.AppropriateTimeToRecalc = 1;
+		this.World.State.getPlayer().calculateModifiers();
 	}
 
 });

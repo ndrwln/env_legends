@@ -9,7 +9,8 @@ this.brigand_follower <- this.inherit("scripts/retinue/follower", {
 		this.m.Image = "ui/campfire/legend_brigand_01";
 		this.m.Cost = 2500;
 		this.m.Effects = [
-			"Makes you see the position of some caravans at all times and even if outside your sight radius"
+			"Makes you see the position of some caravans at all times and even if outside your sight radius",
+			"Allows you to see up to 3 of the most valuable items that are being transporting by caravans"
 		];
 		this.addRequirement("Raided at least 3 caravans", function ()
 		{

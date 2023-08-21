@@ -4,7 +4,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 	{
 		this.m.ID = "scenario.legends_inquisition";
 		this.m.Name = "The Inquisition";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_40.png[/img][/p]There is a great evil in the world, the undead walk the earth and cultists hide in every town. The holy must purge the filth.\n\n[color=#bcad8c]Endless Dead:[/color]Begins with the Undead Crisis already underway, and it can repeat \n\n[color=#bcad8c]Righteous Cause:[/color] Can\'t recruit outlaw backgrounds but more holy backgrounds available to hire\n[color=#bcad8c]Penitence:[/color] Anyone you hire gains the Mind over Body perk.\n";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_40.png[/img][/p]There is a great evil in the world, the undead walk the earth and cultists hide in every town. The holy must purge the filth.\n\n[color=#bcad8c]Endless Dead:[/color] Begins with the Undead Crisis already underway, and it can repeat \n\n[color=#bcad8c]Righteous Cause:[/color] Can\'t recruit outlaw backgrounds but more holy backgrounds available to hire\n[color=#bcad8c]Penitence:[/color] Anyone you hire gains the Mind over Body perk.\n";
 		this.m.Difficulty = 2;
 		this.m.Order = 280;
 		this.m.IsFixedLook = true;

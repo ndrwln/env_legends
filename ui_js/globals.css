@@ -1,0 +1,77 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			06.08.2013 (revamped: 14.02.2017)
+ *  @Description:	Global css options
+ */
+
+
+/*
+	Global Options
+*/
+*
+{
+	/* Disable Control Selection */
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-ms-user-select: none;
+}
+
+
+/*
+	Helper classes
+*/
+.float-left
+{
+	float: left;
+}
+
+.float-right
+{
+	float: right;
+}
+
+.clear-both
+{
+	clear: both;
+}
+
+
+.display-none
+{
+	display: none;
+	pointer-events: none;
+}
+
+.display-block
+{
+	display: block;
+}
+
+
+.opacity-none
+{
+	opacity: 0;
+	/*pointer-events: none;*/
+}
+
+.opacity-full
+{
+	opacity: 1;
+}
+
+.opacity-almost-none
+{
+	opacity: 0.01;
+}
+
+.no-pointer-events
+{
+	pointer-events: none;
+}

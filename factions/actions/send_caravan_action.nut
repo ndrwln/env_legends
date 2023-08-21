@@ -67,66 +67,29 @@ this.send_caravan_action <- this.inherit("scripts/factions/faction_action", {
 		this.m.Dest = null;
 	}
 
-	function onExecute( _faction )
+	function getReputationToDifficultyLightMult()
 	{
-		local party;
-		local value = 0;
-		local tradegoods = 0;
-		local totalValue = 0;
-		local itemList = [];
+		return this.faction_action.getReputationToDifficultyLightMult() * (this.World.FactionManager.isCivilWar() ? 1.1 : 1.0);
+	}
 
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
+	function getResourcesForParty( _settlement, _faction )
+	{
+		if (_settlement == null)
 		{
-			foreach( building in this.m.Start.getBuildings() )
-			{
-				local stash = building.getStash();
-
-				if (stash != null)
-				{
-					foreach( item in stash.getItems() )
-					{
-						if (item == null)
-						{
-							continue;
-						}
-
-						if (item.isItemType(this.Const.Items.ItemType.TradeGood))
-						{
-							tradegoods = tradegoods + item.getResourceValue();
-							itemList.append(item);
-						}
-						else if (this.Math.rand(1, 50) == 1)
-						{
-							if (item.getValue() > 0)
-							{
-								value = value + item.getValue() * 0.01;
-							}
-
-							itemList.append(item);
-						}
-					}
-				}
-			}
-
-			value = this.Math.floor(value);
-			tradegoods = this.Math.floor(tradegoods);
-			totalValue = value + tradegoods;
-		}
-		else
-		{
-			tradegoods = this.Math.round(0.025 * this.m.Start.getResources());
-			totalValue = this.m.Start.getResources() * 0.6;
+			return this.Math.rand(100, 200) * this.getReputationToDifficultyLightMult();
 		}
 
 		if (_faction.hasTrait(this.Const.FactionTrait.OrientalCityState))
 		{
-			party = _faction.spawnEntity(this.m.Start.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanSouthern, totalValue * 1.1);
-		}
-		else
-		{
-			party = _faction.spawnEntity(this.m.Start.getTile(), "Trading Caravan", false, this.Const.World.Spawn.Caravan, totalValue * 1);
+			return (this.Math.rand(90, 137) + this.Math.round(0.12 * ::Math.max(1, _settlement.getResources()))) * this.getReputationToDifficultyLightMult();
 		}
 
+		return (this.Math.rand(60, 110) + this.Math.round(0.1 * ::Math.max(1, _settlement.getResources()))) * this.getReputationToDifficultyLightMult();
+	}
+
+	function onExecute( _faction )
+	{
+		local party = _faction.spawnEntity(this.m.Start.getTile(), "Trading Caravan", false, this.pickSpawnList(this.m.Start, _faction), this.getResourcesForParty(this.m.Start, _faction));
 		party.getSprite("banner").Visible = false;
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
@@ -134,7 +97,6 @@ this.send_caravan_action <- this.inherit("scripts/factions/faction_action", {
 		party.setFootprintType(this.Const.World.FootprintsType.Caravan);
 		party.getFlags().set("IsCaravan", true);
 		party.getFlags().set("IsRandomlySpawned", true);
-		party.setOrigin(this.m.Start);
 
 		if (this.World.Assets.m.IsBrigand && this.m.Start.getTile().getDistanceTo(this.World.State.getPlayer().getTile()) <= 70)
 		{
@@ -143,73 +105,15 @@ this.send_caravan_action <- this.inherit("scripts/factions/faction_action", {
 			party.setDiscovered(true);
 		}
 
-		if (this.m.Start.getProduce().len() != 0)
-		{
-			local produce = 3;
-
-			if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-			{
-				produce = this.Math.max(3, 3 + this.Math.round(0.025 * this.m.Start.getResources()));
-			}
-
-			local getAsString = !::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue();
-
-			for( local j = 0; j < produce; j = j )
-			{
-				local p = ::MSU.Array.rand(this.m.Start.getProduce());
-				party.addToInventory(getAsString ? p : this.new("scripts/items/" + p));
-				j = ++j;
-			}
-		}
-
-		party.getLoot().Money = this.Math.rand(0, 100);
-
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			party.getLoot().ArmorParts = this.Math.rand(0, 10);
-		}
-
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			party.getLoot().Medicine = this.Math.rand(0, 10);
-		}
-
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			party.getLoot().Ammo = this.Math.rand(0, 25);
-		}
-
-		this.m.Start.setResources(this.m.Start.getResources() - tradegoods);
-		party.setResources(totalValue);
-		this.logInfo("Exporting " + totalValue + " resources and " + party.getStashInventory().getItems().len() + " items from " + this.m.Start.getName() + " via a caravan bound for " + this.m.Dest.getName() + " town");
+		this.addLoot(party);
 
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 		{
-			foreach( item in itemList )
-			{
-				party.addToInventory(item);
-			}
+			::Const.World.Common.WorldEconomy.setupTrade(party, this.m.Start, this.m.Dest);
 		}
 		else
 		{
-			local r = this.Math.rand(1, 4);
-
-			if (r == 1)
-			{
-				party.addToInventory("supplies/bread_item");
-			}
-			else if (r == 2)
-			{
-				party.addToInventory("supplies/roots_and_berries_item");
-			}
-			else if (r == 3)
-			{
-				party.addToInventory("supplies/dried_fruits_item");
-			}
-			else if (r == 4)
-			{
-				party.addToInventory("supplies/ground_grains_item");
-			}
+			this.addToPartyInventory(party);
 		}
 
 		local c = party.getController();
@@ -223,6 +127,62 @@ this.send_caravan_action <- this.inherit("scripts/factions/faction_action", {
 		c.addOrder(move);
 		c.addOrder(unload);
 		c.addOrder(despawn);
+		this.afterSpawnCaravan(party);
+	}
+
+	function pickSpawnList( _settlement, _faction )
+	{
+		if (_faction.hasTrait(this.Const.FactionTrait.OrientalCityState))
+		{
+			return this.Const.World.Spawn.CaravanSouthern;
+		}
+
+		return this.Const.World.Spawn.Caravan;
+	}
+
+	function addLoot( _party )
+	{
+		if (this.Math.rand(1, 2) <= 1)
+		{
+			_party.getLoot().ArmorParts = this.Math.rand(0, 10);
+		}
+
+		if (this.Math.rand(1, 2) <= 1)
+		{
+			_party.getLoot().Medicine = this.Math.rand(0, 10);
+		}
+
+		if (this.Math.rand(1, 2) <= 1)
+		{
+			_party.getLoot().Ammo = this.Math.rand(0, 25);
+		}
+
+		_party.getLoot().Money = this.Math.rand(0, 100);
+	}
+
+	function addToPartyInventory( _party )
+	{
+		switch(::Math.rand(1, 4))
+		{
+		case 1:
+			_party.addToInventory("supplies/bread_item");
+			break;
+
+		case 2:
+			_party.addToInventory("supplies/roots_and_berries_item");
+			break;
+
+		case 3:
+			_party.addToInventory("supplies/dried_fruits_item");
+			break;
+
+		default:
+			_party.addToInventory("supplies/ground_grains_item");
+		}
+	}
+
+	function afterSpawnCaravan( _party )
+	{
 	}
 
 });

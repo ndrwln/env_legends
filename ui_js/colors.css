@@ -1,0 +1,217 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			14.02.2017
+ *  @Description:	Defines all Colors used by the UI
+ */
+
+ .is-grayscale
+ {
+	-webkit-filter: grayscale(100%); 
+ }
+ 
+/*
+	Font Colors - General Colors
+*/
+
+.font-color-white 
+{
+	color: #FFFFFF;
+}
+/*
+	Font Colors - Brother Specific
+*/
+.font-color-brother-name
+{
+	color: #dda21f !important;
+	/*color: rgba(213, 141, 21, 1) !important; */
+	/*text-shadow: 1px 1px 1px #000;*/
+}
+
+
+/*
+	Font Colors - Text Specific
+*/
+.font-color-title
+{
+	color: #dda21f !important;
+	text-shadow: 1px 1px rgba(0, 0, 0, 128), -1px -1px #000;
+}
+
+.font-color-subtitle
+{
+	color: #d7b174 !important; /*e1a95d*/
+}
+
+.font-color-description
+{
+	/*color: #FF9966;*/
+	color: #bd9d71 !important; /*c7b690*/ /*bcad8c*/
+}
+
+.font-color-disabled
+{
+	/*color: #FF9966;*/
+	color: #a7a7a7 !important;
+}
+
+.font-color-label
+{
+	color: #d7b174 !important; /*bcad8c*/
+}
+
+.font-color-speech
+{
+	color: #bcad8c !important;
+}
+
+.font-color-label-warning
+{
+	color: #d92e2e !important;
+}
+
+.font-color-value
+{
+	color: #dda21f !important;
+}
+
+.font-color-stack
+{
+	color: #d6dbe9 !important;
+}
+
+.font-color-positive-value
+{
+	color: #dda21f !important;
+}
+
+.font-color-negative-value
+{
+	/*color: #CD2626;*/
+	color: #CD2626 !important;
+}
+
+.font-color-assets-positive-value
+{
+	color: #dda21f !important;
+}
+
+.font-color-assets-negative-value
+{
+	color: #CD2626 !important;
+}
+
+.font-color-ink
+{
+	color: rgba(1,0,53,200) /*#010035*/ !important;
+}
+
+
+/*
+	Font Colors - UI Controls Specific
+*/
+.font-color-progressbar-label
+{
+	color: #c6c6c6;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.font-color-numeration-label
+{
+	color: #d6dbe9;
+	text-shadow: 1px 1px 1px #000;
+}
+
+
+
+/*
+	Font Colors - Console Specific
+*/
+.font-color-console,
+.font-color-console.time,
+.font-color-console.type-none,
+.font-color-console.type-info,
+.font-color-console.type-debug,
+.font-color-console.type-warning,
+.font-color-console.type-error,
+.font-color-console.type-critical,
+.font-color-console.label,
+.font-color-console.value
+{
+	color: #FFFFFF;
+	text-shadow: 1px 1px 1px rgba(40, 40, 40, 0.8);
+}
+
+.font-color-console.type-none
+{
+	color: #FFFFFF;
+}
+
+.font-color-console.type-info
+{
+	color: #2D8CFF;
+}
+
+.font-color-console.type-debug
+{
+	color: #FFCC42;
+}
+
+.font-color-console.type-warning
+{
+	color: #FF4300;
+}
+
+.font-color-console.type-error
+{
+	color: #CC0000; /*#FF1600;*/
+}
+
+.font-color-console.type-critical
+{
+	color: #AC2BE5;
+}
+
+.font-color-console.type-group
+{
+	color: #AFD635;
+}
+
+.font-color-console.filename-label
+{
+	color: #AFD635;
+}
+
+.font-color-console.filename-value
+{
+	color: #EDEDED;
+}
+
+.font-color-console.stacktrace-label
+{
+	color: #AFD635; /*#FF524E*/
+}
+
+.font-color-console.function-label
+{
+	color: #FFCC42; /*#2D8CFF*/
+}
+
+.font-color-console.function-value
+{
+	color: #CD8DB4;
+}
+
+.font-color-console.variable-label
+{
+	color: #CD8DB4; /*#1BA6A8;*/
+}
+
+.font-color-console.variable-value
+{
+	color: #EDEDED; /*#57BB46;*/
+}

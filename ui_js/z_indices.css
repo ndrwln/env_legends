@@ -1,0 +1,191 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			14.02.2017
+ *  @Description:	Defines the z-indices for all Screens and their Modules
+ *	@Note:			Needs to get included at the very last!
+ */
+
+/*
+	Root Screen & Modules
+*/
+.root-screen
+{
+	z-index: 1;
+}
+
+.root-screen .fps-container
+{
+	z-index: 10000;
+}
+
+.root-screen .version-container
+{
+	z-index: 10000;
+}
+
+
+/*
+	UI Item - Lives within body
+*/
+.ui-control.item.is-proxy,
+.ui-control.paperdoll-item.is-proxy
+{
+	z-index: 99999;
+}
+
+
+/*
+	Console Screen
+*/
+.console-screen
+{
+	z-index: 2 !important;
+}
+
+
+/*
+	Loading Screen
+*/
+.loading-screen
+{
+	z-index: 10000 !important;
+}
+
+
+/*
+	Tooltip Screen
+*/
+.tooltip-screen
+{
+	z-index: 9000 !important;
+}
+
+
+/*
+	Tactical Screen
+*/
+.tactical-screen
+{
+	z-index: 10 !important;
+}
+
+.tactical-screen .turnsequencebar-module
+{
+	z-index: 1;
+}
+
+.tactical-screen .orientation-overlay-module
+{
+	z-index: 10;
+}
+
+.tactical-screen .finish-dialog-module
+{
+	z-index: 20;
+}
+
+
+/*
+	Tactical Combat Result Screen
+*/
+.tactical-combat-result-screen
+{
+	z-index: 30 !important;
+}
+
+
+
+/*
+	World Screen
+*/
+.world-screen
+{
+	z-index: 10 !important;
+}
+
+.world-contract-screen
+{
+	z-index: 20 !important;
+}
+
+.world-town-screen
+{
+	z-index: 20 !important;
+}
+
+.camp-screen
+{
+	z-index: 20 !important;
+}
+
+.world-game-finish-screen
+{
+	z-index: 30 !important;
+}
+
+
+/*
+	Character Screen & Modules
+*/
+.character-screen
+{
+	z-index: 20 !important;
+}
+
+/* Overwrite Scrollbar z-indices to not overdraw out screens */
+.character-screen .aciScrollBar.desk
+{
+	z-index: 1;
+}
+
+.character-screen .aciSb_bar_v.desk,
+.character-screen .aciSb_bar_h.desk
+{
+	z-index: 2;
+}
+
+.character-screen .aciSb_resize.desk
+{
+	z-index: 2;
+}
+
+.character-screen .perks-unlock-dialog-screen
+{
+	z-index: 100;
+}
+
+.character-screen .perks-unlock-dialog-screen .l-perks-unlock-dialog
+{
+	z-index: 200;
+}
+
+
+/*
+	Main Menu Screen
+*/
+.main-menu-screen
+{
+	z-index: 100 !important;
+}
+
+/*
+	Ingme Menu Screen
+*/
+.ingame-menu-screen
+{
+	z-index: 100 !important;
+}
+
+
+/*
+	Global Tooltip Module
+*/
+.tooltip-module
+{
+	z-index: 4000 !important;
+}

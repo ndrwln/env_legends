@@ -1,0 +1,571 @@
+/*
+*  @Project:		Battle Brothers
+*	@Company:		Overhype Studios
+*
+*	@Copyright:		(c) Overhype Studios | 2013 - 2020
+*
+*  @Author:		Overhype Studios
+*  @Date:			20.09.2013 (refactored: 16.03.2017)
+*  @Description:	Global Tooltip Module CSS
+*/
+
+
+.tooltip-module
+{
+	max-width: 24.0rem;
+	width: 24.0rem;
+
+	padding  : 0.6rem;
+	padding-bottom: 1.0rem;
+	position : absolute;
+
+	overflow: hidden;
+	/*pointer-events: none;*/
+
+	background-image: url("coui://gfx/ui/skin/mod_tooltip_255_bottom.png");
+	background-size: 25.5rem 100rem;
+	background-position: bottom;
+}
+
+.tooltip-module.is-full-width
+{
+	max-width: 30.0rem;
+	width: 30.0rem;
+
+	background-image: url("coui://gfx/ui/skin/tooltip_315_bottom.png");
+	background-size: 31.5rem 85.3rem;
+	background-position: bottom;
+}
+
+.tooltip-module .top-ornament
+{
+	width: 31.5rem;
+	height: 1.3rem;
+	top: -0.3rem;
+	left: -0.3rem;
+	position: absolute;
+	background-image: url("coui://gfx/ui/skin/tooltip_255_top.png");
+	background-size: 25.5rem 1.3rem;
+	background-position: bottom;
+}
+
+.tooltip-module.is-full-width .top-ornament
+{
+	width: 31.5rem;
+	height: 1.3rem;
+	top: -0.3rem;
+	left: -0.3rem;
+	position: absolute;
+	background-image: url("coui://gfx/ui/skin/tooltip_315_top.png");
+	background-size: 31.5rem 1.3rem;
+	background-position: bottom;
+}
+
+.tooltip-module .header-container
+{
+	width: 100%;
+	float: left;
+	padding-top: 0.2rem;
+}
+
+.tooltip-module .content-container
+{
+	float: left;
+}
+
+.tooltip-module .left-content-container
+{
+	width: 7.0rem;
+	float: left;
+}
+
+.tooltip-module .right-content-container
+{
+	width: 24.0rem;
+	float: left;
+}
+
+/* Special Content Cases */
+.tooltip-module.is-ui-item-content .right-content-container
+{
+	width: 23.0rem;
+	float: left;
+}
+
+.tooltip-module.is-tile-content .right-content-container,
+.tooltip-module.is-skill-content .right-content-container,
+.tooltip-module.is-status-effect-content .right-content-container,
+.tooltip-module.is-ui-element-content .right-content-container
+{
+	width: 30.0rem;
+	float: left;
+}
+
+
+.tooltip-module .footer-container
+{
+	width: 100%;
+	float: left;
+}
+
+.tooltip-module .hint-container
+{
+	width: 100%;
+	float: left;
+}
+
+
+/*
+	Generic Rows
+*/
+.tooltip-module .row
+{
+	width: 100%;
+	float: left;
+	clear: left;
+}
+
+.tooltip-module .row:last-child
+{
+	margin-bottom: 0.2rem;
+}
+
+.tooltip-module .row .l-left-column
+{
+	width	 : 3.0rem;
+	min-height: 2.0rem;
+	float	 : left;
+	position  : relative;
+}
+
+.tooltip-module .row .label
+{
+	line-height: 2.0rem;
+	float	  : left;
+}
+
+.tooltip-module .row .label img
+{
+	height: 2.0rem;
+}
+
+.tooltip-module .row .l-right-column
+{
+	min-height: 2.0rem;
+	float	 : left;
+	position  : relative;
+
+}
+
+.tooltip-module .row .text
+{
+	line-height: 2.0rem;
+	float	  : left;
+}
+
+
+/*
+	Header
+*/
+.tooltip-module .row.title-container
+{
+}
+
+.tooltip-module .title-container .title
+{
+	max-width  : 22.2rem;
+	height	 : 100%;
+	margin-top : 0.2rem;
+	float	  : left;
+}
+
+.tooltip-module.is-full-width .title-container .title
+{
+	max-width: 28.2rem;
+}
+
+.tooltip-module .title-container .title-image
+{
+	width	   : 1.2rem;
+	height	  : 2.3rem;
+	margin-right: 0.6rem;
+	float	   : left;
+}
+
+.tooltip-module .title-image img
+{
+	width : 100%;
+	height: 100%;
+}
+
+
+.tooltip-module .row.description-container
+{
+	/*margin-top: 0.6rem;*/
+}
+
+.tooltip-module .description-container .description
+{
+}
+
+.tooltip-module .row.title-text-container,
+.tooltip-module .row.title-child-text-container
+{
+	margin-top: 0.4rem;
+
+	overflow: hidden;
+}
+
+.tooltip-module .row.title-child-text-container
+{
+	margin-left: 4.0rem;
+}
+
+.tooltip-module .row.title-child-text-container.is-full-width
+{
+	margin-left: 1.5rem;
+}
+
+.tooltip-module .title-text-container .l-right-column
+{
+	width: 19.5rem;
+}
+
+.tooltip-module .title-child-text-container .l-right-column
+{
+	width: 16.5rem;
+}
+
+.tooltip-module.is-full-width .title-text-container .l-right-column
+{
+	width: 27.0rem;
+}
+
+.tooltip-module.is-full-width .title-child-text-container .l-right-column
+{
+	width: 23.0rem;
+}
+
+.tooltip-module .title-text-container .l-right-column.is-full-width
+{
+	width: 26.0rem;
+}
+
+.tooltip-module .title-child-text-container .l-right-column.is-full-width
+{
+	width: 17.0rem;
+}
+
+.tooltip-module.is-full-width .title-text-container .l-right-column.is-full-width
+{
+	width: 30.0rem;
+}
+
+.tooltip-module.is-full-width .title-child-text-container .l-right-column.is-full-width
+{
+	width: 21.5rem;
+}
+
+
+/*
+	Left Content
+*/
+.tooltip-module .left-content-container .l-image-container
+{
+	width: 5.6rem;
+	margin-top: 0.4rem;
+}
+
+/* define special height as the image is loaded asyncronous and thus the tooltip will be wrong in height */
+.tooltip-module .left-content-container .l-image-container.is-small
+{
+	height: 5.6rem;
+}
+
+.tooltip-module .left-content-container .l-image-container.is-large
+{
+	height: 11.2rem;
+}
+
+.tooltip-module .left-content-container img
+{
+	width : 100%;
+	/*height: 100%;*/
+}
+
+
+/*
+	Right Content
+*/
+.tooltip-module .row.content-container,
+.tooltip-module .row.content-child-container
+{
+	margin-top: 0.4rem;
+
+	overflow: hidden;
+}
+
+.tooltip-module .row.content-child-container
+{
+	margin-left: 4.0rem;
+}
+
+.tooltip-module .row.content-child-container.is-full-width
+{
+	margin-left: 0rem;
+}
+
+.tooltip-module.is-skill-content .row.content-child-container.is-full-width
+{
+	margin-left: 1.5rem;
+}
+
+.tooltip-module .row.content-container:first-child
+{
+	margin-top: 0.4rem;
+}
+
+
+.tooltip-module .content-container .l-right-column
+{
+	width: 18.0rem;
+}
+
+.tooltip-module .content-child-container .l-right-column
+{
+	width: 15.0rem;
+}
+
+.tooltip-module .content-container .l-right-column.is-full-width
+{
+	width: 24.0rem;
+}
+
+.tooltip-module .content-child-container .l-right-column.is-full-width
+{
+	width: 18.0rem;
+	margin-left: 0;
+}
+
+/* Special Content Cases */
+.tooltip-module.is-entity-content .content-container .l-right-column
+{
+	width: 21.0rem;
+}
+
+.tooltip-module.is-ui-item-content .content-container .l-right-column
+{
+	width: 20.0rem;
+}
+
+.tooltip-module.is-ui-item-content .content-container .l-right-column.is-full-width
+{
+	width: 22.0rem;
+}
+
+.tooltip-module.is-tile-content .content-container .l-right-column,
+.tooltip-module.is-skill-content .content-container .l-right-column,
+.tooltip-module.is-status-effect-content .content-container .l-right-column,
+.tooltip-module.is-ui-element-content .content-container .l-right-column
+{
+	width: 27.0rem;
+}
+
+.tooltip-module.is-ui-item-content .content-child-container .l-right-column
+{
+	width: 16.0rem;
+}
+
+.tooltip-module.is-tile-content .content-child-container .l-right-column,
+.tooltip-module.is-skill-content .content-child-container .l-right-column,
+.tooltip-module.is-status-effect-content .content-child-container .l-right-column,
+.tooltip-module.is-ui-element-content .content-child-container .l-right-column
+{
+	width: 23.0rem;
+}
+
+.tooltip-module.is-tile-content .content-container .l-right-column.is-full-width,
+.tooltip-module.is-skill-content .content-container .l-right-column.is-full-width,
+.tooltip-module.is-status-effect-content .content-container .l-right-column.is-full-width,
+.tooltip-module.is-ui-element-content .content-container .l-right-column.is-full-width
+{
+	width: 30.0rem;
+}
+
+.tooltip-module.is-tile-content .content-child-container .l-right-column.is-full-width,
+.tooltip-module.is-skill-content .content-child-container .l-right-column.is-full-width,
+.tooltip-module.is-status-effect-content .content-child-container .l-right-column.is-full-width,
+.tooltip-module.is-ui-element-content .content-child-container .l-right-column.is-full-width
+{
+	width: 23.0rem;
+	margin-left: 0;
+}
+
+
+
+.tooltip-module .row .l-progressbar-container
+{
+	width   : 19.6rem;
+	height  : 2.0rem;
+	position: relative;
+	float   : left;
+}
+
+.tooltip-module .row .progressbar-container
+{
+	top	 : 0;
+	left	: 0;
+	width   : 19.6rem;
+	height  : 2.0rem;
+	position: absolute;
+	margin  : auto;
+}
+
+.tooltip-module .progressbar-container .progressbar,
+.tooltip-module .progressbar-container .progressbar-preview
+{
+	width   : 100%;
+	height  : 100%;
+	position: absolute;
+	z-index : 1;
+}
+
+.tooltip-module .progressbar-container .progressbar-preview
+{
+	z-index : 2;
+}
+
+.tooltip-module .progressbar-container .progressbar-label
+{
+	width   : 100%;
+	height  : 100%;
+	position: absolute;
+	z-index : 3;
+
+	text-align : center;
+	line-height: 1.8rem;
+}
+
+
+/*
+	Footer
+*/
+
+.tooltip-module .row.section-container
+{
+	margin-top   : 0.4rem;
+	margin-bottom: 0.4rem;
+}
+
+/*
+.tooltip-module .row.section-container:last-child
+{
+	margin-bottom: 0;
+}
+*/
+
+.tooltip-module .row .section-title
+{
+	width : 100%;
+	height: 2.0rem;
+
+	text-align : center;
+	line-height: 2.0rem;
+}
+
+.tooltip-module .row .l-section-icon-container
+{
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+.tooltip-module .row .section-icon-container
+{
+	margin: 0 auto;
+}
+
+.tooltip-module .section-icon-container .icon
+{
+	width: 3.4rem;
+	float: left;
+}
+
+.tooltip-module .section-icon-container .icon img
+{
+	width: 100%;
+}
+
+
+
+.tooltip-module .row.hint-text-container,
+.tooltip-module .row.hint-child-text-container
+{
+	margin-top: 0.4rem;
+
+	overflow: hidden;
+}
+
+.tooltip-module .row.hint-child-text-container
+{
+	margin-left: 4.0rem;
+}
+
+.tooltip-module .row.hint-child-text-container.is-full-width
+{
+	margin-left: 1.5rem;
+}
+
+.tooltip-module .hint-text-container .l-right-column
+{
+	width: 19.5rem;
+}
+
+.tooltip-module .hint-child-text-container .l-right-column
+{
+	width: 16.5rem;
+}
+
+.tooltip-module.is-full-width .hint-text-container .l-right-column
+{
+	width: 27.0rem;
+}
+
+.tooltip-module.is-full-width .hint-child-text-container .l-right-column
+{
+	width: 22.0rem;
+}
+
+.tooltip-module .hint-text-container .l-right-column.is-full-width
+{
+	width: 26.0rem;
+}
+
+.tooltip-module .hint-child-text-container .l-right-column.is-full-width
+{
+	width: 17.0rem;
+}
+
+.tooltip-module.is-full-width .hint-text-container .l-right-column.is-full-width
+{
+	width: 30.0rem;
+}
+
+.tooltip-module.is-full-width .hint-child-text-container .l-right-column.is-full-width
+{
+	width: 21.5rem;
+}
+
+
+/* Do not trim children in the text rows at the right border. */
+.tooltip-module.is-entity-content .content-child-container .l-right-column
+{
+	width: 16.5rem;
+}
+
+/* Move the margin 1rem to the left. */
+.tooltip-module.is-entity-content .row.content-child-container
+{
+	margin-left: 3rem;
+}
+

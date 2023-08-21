@@ -1,0 +1,36 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			14.02.2017
+ *  @Description:	FPS Module CSS
+ */
+
+
+.root-screen .fps-container
+{
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 0 0 10px 0;
+
+	width	   : 8.0rem;
+	height	  : 2.2rem;
+	padding-left: 1.0rem;
+	padding-top : 0.4rem;
+	position	: absolute; 
+
+	pointer-events: none;
+}
+
+.root-screen .fps-container .label
+{
+	float: left;
+}
+
+.root-screen .fps-container .value
+{
+	float: left;
+	margin-left: 0.4rem;
+}

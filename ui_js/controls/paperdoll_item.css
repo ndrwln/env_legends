@@ -1,0 +1,185 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ *
+ *  @Author:		Overhype Studios
+ *  @Date:			10.12.2017
+ *  @Description:	Paperdoll itemControl JS
+ */
+
+
+/*
+	paperdoll item
+*/
+.ui-control.paperdoll-item
+{
+	width: 7.0rem;
+	height: 7.0rem;
+	position: relative;
+
+	overflow: hidden;
+}
+
+.ui-control.paperdoll-item.is-big
+{
+	height: 14.0rem;
+}
+
+.ui-control.paperdoll-item.is-proxy
+{
+	width: 7.0rem;
+	height: 7.0rem;
+	position: absolute;
+
+	/*overflow: hidden;*/
+}
+
+.ui-control.paperdoll-item.is-big.is-proxy
+{
+	height: 14.0rem;
+}
+
+.ui-control.paperdoll-item.has-slot-frame
+{
+	/*border: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-radius: 10px 10px 10px 10px;*/
+	/*box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
+}
+
+.ui-control.paperdoll-item.is-dragged
+{
+	/* background-color: rgba(100, 20, 10, 0.4); */
+}
+
+.ui-control.paperdoll-item.is-drop-target:not(.is-proxy)
+{
+	/*background-color: rgba(200, 120, 20, 0.7);*/
+	/*-webkit-filter: brightness(125%);*/
+}
+
+.ui-control.paperdoll-item:hover:not(.is-proxy),
+.ui-control.paperdoll-item.is-selected:not(.is-proxy)
+{
+	/*background-color: rgba(200, 120, 20, 0.7);*/
+	/*box-shadow: inset 0 0 20px rgba(100, 20, 20, 0.8);*/
+	/*-webkit-filter: brightness(125%);*/
+}
+
+.ui-control.paperdoll-item > .image-layer
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0.1rem;
+	position: absolute;
+	margin: auto;
+	z-index: 1;
+
+	pointer-events: none;
+}
+
+.ui-control.paperdoll-item.is-dragged > .image-layer
+{
+	opacity: 0.6;
+}
+
+.ui-control.paperdoll-item > .image-layer img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	margin: auto;
+
+	opacity: 0.9;
+
+	pointer-events: none;
+}
+
+.ui-control.paperdoll-item > .image-layer img.is-small
+{
+	height: 50%;
+}
+
+.ui-control.paperdoll-item > .image-layer img.is-blocked
+{
+	opacity: 0.5;
+}
+
+
+.ui-control.paperdoll-item > .locked-layer
+{
+	top: 0.4rem;
+	left: 0.4rem;
+	right: 0.4rem;
+	bottom: 0.4rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+
+	pointer-events: none;
+}
+
+.ui-control.paperdoll-item > .locked-layer img
+{
+	right: 0;
+	bottom: 0;
+	width: 2.0rem;
+	height: 2.52rem;
+	position: absolute;
+
+	opacity: 0.9;
+
+	pointer-events: none;
+}
+
+.ui-control.paperdoll-item > .repair-layer
+{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 3;
+
+	top: 4.2rem;
+	left: 4.3rem;
+	
+	pointer-events: none;
+}
+
+.ui-control.paperdoll-item > .repair-layer-big
+{
+	top: 11.2rem;
+	left: 4.5rem;
+}
+
+.ui-control.paperdoll-item > .amount-layer
+{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	padding: 0.4rem;
+	z-index: 3;
+
+	pointer-events: none;
+}
+
+.ui-control.paperdoll-item > .amount-layer .label
+{
+	left: 0.4rem;
+	right: 0;
+	bottom: 0.4rem;
+	height: 1.2rem;
+	position: absolute;
+
+	text-align: left;
+	line-height: 1.2rem;
+
+	pointer-events: none;
+}
+
+

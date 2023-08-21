@@ -1,0 +1,239 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ *
+ *  @Author:		Overhype Studios
+ *  @Date:			02.12.2017
+ *  @Description:	Progressbar Control CSS
+ */
+
+
+/*
+	Progressbar
+*/
+.ui-control.progressbar
+{
+	width: 100%;
+	height: 100%;
+	position: relative;
+
+	overflow: hidden;
+	outline: hidden;
+}
+
+.ui-control.progressbar *
+{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.ui-control.progressbar.has-frame
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_empty_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.has-frame-xp
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_experience_empty.png");
+	background-size: 19.6rem 2.6rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar .normal-bar,
+.ui-control.progressbar .preview-bar
+{
+	/*border-radius: 10px 10px 10px 10px;*/
+
+	/*top: 0.1rem;
+	left: 0.1rem;*/
+
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.ui-control.progressbar .preview-bar
+{
+	z-index: 2;
+}
+
+.ui-control.progressbar .label
+{
+	/* vertical center */
+	top: 50%;
+	width: 100%;
+	position: relative;
+	z-index: 3;
+
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+
+	white-space: nowrap;
+	text-align: center;
+	text-overflow: ellipsis;
+}
+
+
+/* Colors */
+.ui-control.progressbar.xp .normal-bar,
+.ui-control.progressbar.xp .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_experience_fill.png");
+	background-size: 19.6rem 2.6rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.xp-paragon .normal-bar,
+.ui-control.progressbar.xp-paragon .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_paragon_fill.png");
+	background-size: 19.6rem 2.6rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.armor-head .normal-bar,
+.ui-control.progressbar.armor-head .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_armor_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.armor-body .normal-bar,
+.ui-control.progressbar.armor-body .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_armor_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.hitpoints .normal-bar,
+.ui-control.progressbar.hitpoints .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_health_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.action-points .normal-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_action_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.action-points .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_action_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.morale .normal-bar,
+.ui-control.progressbar.morale .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_morale_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.fatigue .normal-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_fatigue_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.fatigue .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_fatigue_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.melee-skill .normal-bar,
+.ui-control.progressbar.melee-skill .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.range-skill .normal-bar,
+.ui-control.progressbar.range-skill .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.melee-defense .normal-bar,
+.ui-control.progressbar.melee-defense .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.range-defense .normal-bar,
+.ui-control.progressbar.range-defense .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.sight-distance .normal-bar,
+.ui-control.progressbar.sight-distance .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.regular-damage .normal-bar,
+.ui-control.progressbar.regular-damage .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.crushing-damage .normal-bar,
+.ui-control.progressbar.crushing-damage .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.chance-to-hit-head .normal-bar,
+.ui-control.progressbar.chance-to-hit-head .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.initiative .normal-bar,
+.ui-control.progressbar.initiative .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.progressbar.bravery .normal-bar,
+.ui-control.progressbar.bravery .preview-bar
+{
+	background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+	background-size: 12.7rem 2.2rem;
+	background-repeat: no-repeat;
+}

@@ -1,0 +1,218 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ *
+ *  @Author:		Overhype Studios
+ *  @Date:			05.10.2017
+ *  @Description:	Popup popup-dialog Control JS
+ */
+
+
+.ui-control.popup-dialog-dialog-modal-background
+{
+	background-color: rgba(0, 0, 0, 0.3);
+
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index : 99999;
+}
+
+.ui-control.popup-dialog-dialog-modal-background-transparent
+{
+	background-color: rgba(0, 0, 0, 0.0);
+
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index : 99999;
+}
+
+
+.ui-control.popup-dialog
+{
+	/*background-color: rgba(0, 0, 0, 0.9);
+	border: 1px rgba(130, 130, 130, 1) solid;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 1);*/
+
+	overflow: hidden;
+}
+
+.ui-control.popup-dialog *
+{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.ui-control.popup-dialog > .header
+{
+	width: 100%;
+	height: 6.0rem;
+	padding: 0.4rem;
+	position: relative;
+	float: left;
+
+	overflow: hidden;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.ui-control.popup-dialog > .header.has-sub-title
+{
+	height: 8.0rem;
+}
+
+.ui-control.popup-dialog > .header .image-container
+{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 1;
+
+	border-radius: 5px 5px 0 0;
+
+	overflow: hidden;
+}
+
+.ui-control.popup-dialog > .header img
+{
+	top: 0;
+	left: 0;
+	/* NOTE: Keep orginal size
+	width: 100%;
+	height: 100%;
+	*/
+	position: relative;
+	z-index: 1;
+
+	opacity: 0.4;
+}
+
+.ui-control.popup-dialog > .header .text-container
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+}
+
+.ui-control.popup-dialog > .header .title
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4.0rem;
+	position: absolute;
+	margin: auto;
+
+	text-align : center;
+	line-height: 4.0rem;
+}
+
+.ui-control.popup-dialog > .header.has-sub-title .title
+{
+	top: 1.0rem;
+}
+
+.ui-control.popup-dialog > .header.has-no-sub-title .title
+{
+	top: 0;
+	bottom: 0;
+}
+
+.ui-control.popup-dialog > .header .sub-title
+{
+	top: 5.0rem;
+	left: 0;
+	right: 0;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
+
+	text-align : center;
+	line-height: 2.0rem;
+}
+
+.ui-control.popup-dialog > .sub-header
+{
+	width: 100%;
+	position: relative;
+	float: left;
+
+	overflow: hidden;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.ui-control.popup-dialog > .content
+{
+	width: 100%;
+	position: relative;
+	float: left;
+
+	/*overflow: hidden;*/
+}
+
+.ui-control.popup-dialog > .footer
+{
+	width: 100%;
+	height: 6.0rem;
+	position: relative;
+	float: left;
+
+	/*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.ui-control.popup-dialog > .footer .l-button-bar
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 16.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.ui-control.popup-dialog > .footer .l-button-bar.has-two-buttons
+{
+	width: 34.0rem;
+}
+
+.ui-control.popup-dialog > .footer .l-cancel-button
+{
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}
+
+.ui-control.popup-dialog > .footer .l-ok-button
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}

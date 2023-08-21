@@ -1,0 +1,132 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ *
+ *  @Author:		Overhype Studios
+ *  @Date:			01.10.2017
+ *  @Description:	Input Control JS
+ */
+
+/*
+	Input
+*/
+.ui-control input
+{
+	width: 100%;
+	height: 100%;
+	padding-left: 0.6rem;
+	position: relative;
+
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	/*border-radius: 5px 5px 5px 5px;
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);*/
+
+	background-image: url("coui://gfx/ui/skin/text_input_300x40_default.png");
+	background-size: 30.0rem 4.0rem;
+	background-repeat: no-repeat;
+
+	outline: none;
+
+	/*color: #DAA520;*/
+	text-shadow: 1px 1px 1px #000;
+
+	-moz-user-select: -moz-text;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+.ui-control input:hover,
+.ui-control input:focus
+{
+	/*border-color: rgb(129, 50, 24);*/
+	background-image: url("coui://gfx/ui/skin/text_input_300x40_selected.png");
+	background-size: 30.0rem 4.0rem;
+}
+
+/*
+.ui-control.input:active
+ {
+	 background-color: rgba(160, 160, 160, 1);
+	 text-shadow: 2px 2px 1px #000;
+ }
+*/
+
+.ui-control input[disabled]
+{
+	/*background-color: rgba(60, 60, 60, 1);*/
+	/*color : #997522;*/
+	background-image: url("coui://gfx/ui/skin/text_input_300x40_inactive.png");
+	background-size: 30.0rem 4.0rem;
+}
+
+.ui-control input[disabled]:hover
+{
+	/*background-color: rgba(60, 60, 60, 1);*/
+	/*color : #997522;*/
+	background-image: url("coui://gfx/ui/skin/text_input_300x40_inactive.png");
+	background-size: 30.0rem 4.0rem;
+}
+
+.ui-control input[disabled]:active
+{
+	/*background-color: rgba(60, 60, 60, 1);*/
+	/*color : #997522;*/
+	background-image: url("coui://gfx/ui/skin/text_input_300x40_inactive.png");
+	background-size: 30.0rem 4.0rem;
+}
+
+/*
+	 ******** RANGE SLIDER -**********
+*/
+
+input[type=range]
+{
+	-webkit-appearance: none;
+	/*margin: 18px 0;*/
+
+	background-image: none;
+}
+
+input[type=range]:hover,
+input[type=range]:focus
+{
+	-webkit-appearance: none;
+	outline: none;
+	background-image: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track
+{
+	-webkit-appearance: none;
+	width: 100%;
+	height: 2.6rem;
+	border: 0;
+
+	background: none;
+	background-image: url("coui://gfx/ui/skin/slider_bar.png");
+	background-size: 29.1rem 2.6rem;
+	background-repeat: no-repeat;
+}
+
+input[type=range]::-webkit-slider-thumb
+{
+	-webkit-appearance: none;
+	height: 4.0rem;
+	width: 2.0rem;
+	margin-top: -0.6rem;
+	border: 0;
+
+	background: none;
+	background-image: url("coui://gfx/ui/skin/slider_button.png");
+	background-size: 2.0rem 4.0rem;
+	background-repeat: no-repeat;
+}
+
+/*input[type=range]:focus::-webkit-slider-runnable-track
+{
+	-webkit-appearance: none;
+	background: #ff0000;
+}*/

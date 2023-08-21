@@ -1,0 +1,292 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			19.04.2013
+ *  @Description:	Console Screen JS
+ */
+
+/*
+	Generic Containers
+*/
+.console-screen
+{
+	top	 : 0;
+	left	: 0;
+	width   : 100%;
+	height  : 100%;
+	position: absolute;
+	
+	overflow: hidden;
+	pointer-events: none;
+}
+
+/* 
+	Enable Border Box Model 
+*/
+.console-screen *
+{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.console-screen .console-container
+{
+	background-color: rgba(0, 0, 0, 0.7);
+
+	top	 : 0;
+	left	: 0;
+	width   : 100%;
+	position: relative;
+	float   : left;
+
+	pointer-events: auto;
+}
+
+.console-screen .console-container .log-container
+{
+	top	 : 0;
+	left	: 0;
+	right   : 0;
+	bottom  : 3.0rem;
+	position: absolute;
+
+	overflow: auto;
+	outline : hidden;
+}
+
+.console-screen .console-container .log-container.has-visible-options
+{
+	bottom  : 6.0rem;
+}
+
+.console-screen .console-container .log-scroll-container
+{
+	width: 100%;
+}
+
+.console-screen .console-container .options-container
+{
+	left	: 0;
+	right   : 0;
+	bottom  : 3.0rem;
+	height  : 3.0rem;
+	position: absolute;
+}
+
+.console-screen .options-container .button-container
+{
+	top	 : 0;
+	left	: 0;
+	right   : 0;
+	bottom  : 0;
+	width   : 70.0rem;
+	height  : 2.4rem;
+	position: absolute;
+	margin  : auto 0;
+}
+
+.console-screen .options-container .button-container .button
+{
+	height: 100%;
+	width : 10.0rem;
+	float : left;
+	margin-left: 0.4rem;
+
+	line-height: 2.4rem;
+	text-align : center;
+}
+
+.console-screen .console-container .toolbar-container
+{
+	left	: 0;
+	right   : 0;
+	bottom  : 0;
+	height  : 3.0rem;
+	position: absolute;
+}
+
+.console-screen .toolbar-container .button-container
+{
+	top	 : 0;
+	left	: 0;
+	bottom  : 0;
+	width   : 18.2rem;
+	height  : 2.4rem;
+	position: absolute;
+	margin  : auto 0;
+}
+
+.console-screen .toolbar-container .button
+{
+	height: 100%;
+	width : 4.0rem;
+	float : left;
+	margin-left: 0.4rem;
+
+	line-height: 2.4rem;
+	text-align : center;
+}
+
+.console-screen .toolbar-container .button.is-options
+{
+	width : 7.0rem;
+}
+
+.console-screen .toolbar-container .input-container
+{
+	top	 : 0;
+	left	: 16.6rem;
+	right   : 0;
+	bottom  : 0;
+	height  : 2.4rem;
+	position: absolute;
+	margin  : auto 0;
+}
+
+.console-screen .input-container input
+{
+	width : 100%;
+	height: 2.4rem;
+	padding-left : 1.0rem;
+	padding-right: 1.0rem;
+	
+	line-height: 2.4rem;
+
+	pointer-events: auto;
+
+	-moz-user-select: -moz-text;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+
+
+/* Log Styles */
+.console-screen .log-scroll-container .log-entry
+{
+	width   : 100%;
+	position: relative;
+	float   : left;
+	clear   : left;
+	margin-bottom: 0.2rem; 
+}
+
+.console-screen .log-entry.is-group 
+{
+	margin-left: 3.0rem;
+}
+
+.console-screen .log-entry .column
+{
+	float: left;
+}
+
+.console-screen .log-entry .auto-expand-column
+{
+	float: none;
+
+	overflow: hidden;
+}
+
+.console-screen .log-entry .row
+{
+	width: 100%;
+	float: left;
+	clear: left;
+}
+
+.console-screen .log-entry .log-time
+{
+	width : 8.0rem;
+	height: 2.0rem;
+	float : left;
+
+	line-height: 2.0rem;
+	text-align : center;
+}
+
+.console-screen .log-entry .log-type
+{
+	width   : 2.0rem;
+	height  : 2.0rem;
+	position: relative;
+	float   : left;
+	margin-right: 0.7rem; 
+}
+
+.console-screen .log-entry .log-type img
+{
+	top	 : 0;
+	left	: 0;
+	right   : 0;
+	bottom  : 0;
+	width   : 1.6rem;
+	height  : 1.6rem;
+	position: absolute;
+	margin  : auto;
+}
+
+.console-screen .log-entry .log-title
+{
+	float : left;
+
+	line-height: 2.0rem;
+}
+
+.console-screen .log-entry .container
+{
+	width: 100%;
+	float: left;
+	clear: left;
+}
+
+.console-screen .log-entry .container.is-collapsible
+{
+	padding-left: 2.0rem;
+}
+
+.console-screen .log-entry .container.has-top-padding
+{
+	padding-bottom: 0.4rem;
+}
+
+.console-screen .log-entry .container.has-full-padding
+{
+	padding: 0.4rem;
+}
+
+/*
+.console-screen .log-entry .container .container.is-collapsible:last-child
+{
+	margin-bottom : 0.4rem;
+}
+*/
+
+.console-screen .log-entry .container .row
+{
+	width: 100%;
+	float: left;
+	clear: left;
+}
+
+.console-screen .log-entry .label,
+.console-screen .log-entry .value
+{
+	float: left;
+	padding-left : 1.0rem;
+	padding-right: 1.0rem;
+
+	line-height: 2.0rem;
+}
+
+.console-screen .log-entry .value
+{
+	float: none;
+	
+	overflow: hidden;
+}

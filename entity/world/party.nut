@@ -248,18 +248,62 @@ this.party <- this.inherit("scripts/entity/world/world_entity", {
 			});
 		}
 
+		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && this.World.Assets.m.IsBrigand && this.m.Flags.get("IsCaravan"))
+		{
+			local inv = this.getStashInventory().getItems();
+
+			if (inv.len() == 0)
+			{
+				ret.push({
+					id = 51,
+					type = "text",
+					text = "[u]Inventory is empty[/u]"
+				});
+			}
+			else
+			{
+				local num = ::Math.min(inv.len(), ::Const.World.Common.WorldEconomy.AmountOfLeakedCaravanInventoryInfo);
+				ret.push({
+					id = 51,
+					type = "text",
+					text = "[u]Transporting:[/u]"
+				});
+
+				for( local i = 0; i < num; i = ++i )
+				{
+					ret.push({
+						id = 52 + i,
+						type = "text",
+						icon = "ui/items/" + inv[i].getIcon(),
+						text = inv[i].getName()
+					});
+				}
+
+				if (inv.len() > ::Const.World.Common.WorldEconomy.AmountOfLeakedCaravanInventoryInfo)
+				{
+					ret.push({
+						id = 53 + num,
+						type = "text",
+						text = "And " + (inv.len() - ::Const.World.Common.WorldEconomy.AmountOfLeakedCaravanInventoryInfo) + " more item(s)"
+					});
+				}
+			}
+		}
+
 		if (this.Const.LegendMod.DebugMode)
 		{
-			ret.push({
-				id = 6,
-				type = "hint",
-				text = "Resources: " + this.getResources()
-			});
-			ret.push({
-				id = 6,
-				type = "hint",
-				text = "Goods: " + this.getInventory().len()
-			});
+			ret.extend([
+				{
+					id = 6,
+					type = "hint",
+					text = "Resources: " + this.getResources()
+				},
+				{
+					id = 6,
+					type = "hint",
+					text = "Goods: " + this.getInventory().len()
+				}
+			]);
 		}
 
 		return ret;
@@ -555,7 +599,6 @@ this.party <- this.inherit("scripts/entity/world/world_entity", {
 		else
 		{
 			this.m.StashInventory.add(_i);
-			this.getFlags().set("UseStashInventory", true);
 		}
 	}
 
@@ -613,11 +656,7 @@ this.party <- this.inherit("scripts/entity/world/world_entity", {
 		_out.writeBool(this.isVisibleInFogOfWar());
 		_out.writeF32(this.m.StunTime);
 		_out.writeU8(this.m.IdleSoundsIndex);
-
-		if (this.getFlags().get("UseStashInventory"))
-		{
-			this.m.StashInventory.onSerialize(_out);
-		}
+		this.m.StashInventory.onSerialize(_out);
 	}
 
 	function onDeserialize( _in )
@@ -669,14 +708,11 @@ this.party <- this.inherit("scripts/entity/world/world_entity", {
 			this.m.IdleSoundsIndex = _in.readU8();
 		}
 
+		this.m.StashInventory.onDeserialize(_in);
+
 		if (this.hasLabel("name"))
 		{
 			this.getLabel("name").Visible = this.m.IsShowingName && this.Const.World.AI.VisualizeNameOfUnits;
-		}
-
-		if (this.getFlags().get("UseStashInventory"))
-		{
-			this.m.StashInventory.onDeserialize(_in);
 		}
 	}
 

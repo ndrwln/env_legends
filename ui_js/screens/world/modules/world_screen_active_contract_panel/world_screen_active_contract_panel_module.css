@@ -1,0 +1,202 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			22.11.2017
+ *  @Description:	World Screen: Active Contract Panel Module CSS
+ */
+
+.world-screen .active-contract-panel-module
+{
+	top: 0;
+	right: 0;
+	width: 100%;
+	position: absolute;
+
+	pointer-events: auto;
+
+	/*background-color: rgba(0, 0, 0, 0.8);*/
+   /* border-radius: 10px 0 0 10px;*/
+	/*box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);
+	border: 1px rgba(130, 130, 130, 0.8) solid;*/
+
+	background-image: url("coui://gfx/ui/skin/panel_quest4.png");
+	background-size: 36.4rem 59.8rem;
+	background-position: bottom;
+}
+
+.world-screen .active-contract-panel-module .header-container
+{
+	width: 37.0rem;
+	height: 5.9rem;
+	position: relative;
+	float: left;
+	clear: left;
+
+	/*margin-left: 1.0rem;*/
+
+	left: -1.0rem;
+	top: -0.3rem;
+
+	background-image: url("coui://gfx/ui/skin/panel_quest_header2.png");
+	background-size: 37.0rem 5.9rem;
+	background-position: top left;
+}
+
+.world-screen .active-contract-panel-module .header-container .l-hide-button
+{
+	top: -0.1rem;
+	left: 2.3rem;
+	bottom: 0;
+	width: 4.5rem;
+	height: 4.1rem;
+	position: absolute;
+	margin: auto 0;
+
+	z-index: 5;
+}
+
+.world-screen .active-contract-panel-module .header-container .title-container
+{
+	top: 0;
+	left: 5.0rem;
+	right: 0;
+	bottom: 0;
+	height: 5.0rem;
+	position: absolute;
+	margin: auto 0;
+
+	overflow: hidden;
+}
+
+.world-screen .active-contract-panel-module .header-container .title
+{
+	/* vertical center */
+	top: 50%;
+	width: 100%;
+	position: relative;
+
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+
+	text-align: center;
+	text-overflow: ellipsis;
+	line-height: 2.2rem;
+}
+
+.world-screen .active-contract-panel-module .content-container
+{
+	/*height: 60.0rem;*/
+	width: 100%;
+	max-height: 60.0rem;
+	position: relative;
+	float: left;
+	clear: left;
+
+	overflow: hidden;
+
+	margin-left: 1.0rem;
+	margin-right: 1.0rem;
+	margin-bottom: 9.0rem;
+}
+
+.world-screen .active-contract-panel-module .content-container .divider
+{
+	width: 100%;
+	margin-top: 0.2rem;
+	margin-bottom: 0.5rem;
+	position: relative;
+	float: left;
+	clear: left;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.world-screen .active-contract-panel-module .content-container .l-list-container
+{
+	padding-left: 0.5rem;
+	padding-right: 2.0rem;
+	padding-bottom: 0.5rem;
+	position: relative;
+	float: left;
+	clear: left;
+}
+
+/*
+.world-screen .active-contract-panel-module .content-container .l-list-container .scroll-container
+{
+	padding-left: 1.0rem;
+	padding-right: 1.0rem;
+}
+*/
+
+/* rows */
+.active-contract-panel-module .content-container .row
+{
+	/*background-color: #B58B15;*/
+
+	margin-bottom: 1.0rem;
+	float: left;
+	clear: left;
+}
+
+.active-contract-panel-module .content-container .row.list
+{
+	padding-left: 1.0rem;
+}
+
+.active-contract-panel-module .content-container .row:last-child
+{
+	margin-bottom: 0;
+}
+
+
+/* description */
+.active-contract-panel-module .content-container .row img
+{
+	width: 16.0rem;
+
+	float: left;
+	clear: left;
+}
+
+
+/* description */
+.active-contract-panel-module .content-container .row .description
+{
+	float: left;
+	clear: left;
+
+	text-align: left;
+}
+
+
+/* list */
+.active-contract-panel-module .content-container .row .title
+{
+	margin-bottom: 0.4rem;
+	float: left;
+	clear: left;
+
+	text-align: left;
+}
+
+.active-contract-panel-module .content-container .row.list img
+{
+	width: 3.0rem;
+	margin-right: 1.0rem;
+	float: left;
+}
+
+.active-contract-panel-module .content-container .row.list .text
+{
+	float: none;
+	line-height: 2.6rem;
+	text-align: left;
+
+	overflow: hidden;
+}

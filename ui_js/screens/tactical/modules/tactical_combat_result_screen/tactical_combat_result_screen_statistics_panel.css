@@ -1,0 +1,194 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			22.10.2017
+ *  @Description:	Tactical Combat Result Screen - Statistics Panel JS
+ */
+
+.tactical-combat-result-screen .content .statistics-panel
+{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.tactical-combat-result-screen .content .statistics-panel.is-top
+{
+	z-index: 2;
+}
+
+.tactical-combat-result-screen .statistics-panel .l-list-container
+{
+	top: -0.1rem;
+	left: 1.1rem;
+	right: 0.0rem;
+	bottom: 1.0rem;
+	position: absolute;
+}
+
+.tactical-combat-result-screen .statistics-panel .statistic-container
+{
+	width: 33.0rem;
+	height: 14.0rem;
+	position: relative;
+	margin-bottom: 0.4rem;
+	float: left;
+
+	overflow: hidden;
+
+	background-image: url("coui://gfx/ui/skin/result_panel_01.png");
+	background-size: 33.0rem 14.0rem;
+	background-repeat: no-repeat;
+}
+
+.tactical-combat-result-screen .statistics-panel .statistic-container.is-dead
+{
+	background-image: url("coui://gfx/ui/skin/result_panel_02.png");
+	background-size: 33.0rem 14.0rem;
+	background-repeat: no-repeat;
+}
+
+.tactical-combat-result-screen .statistics-panel .statistic-container.is-survivor
+{
+	background-image: url("coui://gfx/ui/skin/result_panel_03.png");
+	background-size: 33.0rem 14.0rem;
+	background-repeat: no-repeat;
+}
+
+.tactical-combat-result-screen .statistics-panel .statistic-container.is-middle
+{
+	margin-left: 0.6rem;
+	margin-right: 0.6rem;
+}
+
+.tactical-combat-result-screen .statistics-panel .column
+{
+	height: 100%;
+	position: relative;
+	float : left;
+}
+
+.tactical-combat-result-screen .statistics-panel .column.is-left
+{
+	width: 11.0rem;
+}
+
+.tactical-combat-result-screen .statistics-panel .column.is-left > img
+{
+	/*border: 1px red solid;*/
+
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+
+	display: block;
+}
+
+.tactical-combat-result-screen .statistics-panel .column.is-left .overlays-container
+{
+	bottom: 0.4rem;
+	left: 1.0rem;
+	width: 11.0rem;
+	height: 2.6rem;
+	position: absolute;
+}
+
+.tactical-combat-result-screen .statistics-panel .column.is-left .levelup-overlays-container
+{
+	top: 0.8rem;
+	left: 1.0rem;
+	width: 11.0rem;
+	height: 2.6rem;
+	position: absolute;
+}
+
+.tactical-combat-result-screen .statistics-panel .column.is-left .overlays-container > img,
+.tactical-combat-result-screen .statistics-panel .column.is-left .levelup-overlays-container > img
+{
+	width: 2.6rem;
+	height: 2.6rem;
+	float: left;
+	display: block;
+}
+
+
+.tactical-combat-result-screen .statistics-panel .column.is-right
+{
+	width: 21.6rem;
+	padding-left: 1.0rem;
+	padding-right: 1.0rem;
+}
+
+.tactical-combat-result-screen .statistics-panel .row
+{
+	width: 100%;
+	position: relative;
+	float: left;
+}
+
+.tactical-combat-result-screen .statistics-panel .row.is-name-container
+{
+	bottom: -1.0rem;
+	height: 4.6rem;
+
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 0 0;
+}
+
+.tactical-combat-result-screen .statistics-panel .row .name
+{
+	bottom: 0;
+	width: 100%;
+	position: absolute;
+
+	text-align: center;
+	line-height: 2.0rem;
+	white-space: nowrap;
+}
+
+.tactical-combat-result-screen .statistics-panel .row.is-center-container
+{
+	margin-top: 1.1rem;
+}
+
+.tactical-combat-result-screen .statistics-panel .row .value-container
+{
+	width: 8.8rem;
+	height: 3.0rem;
+	position: relative;
+	margin-left: 1.0rem;
+	margin-bottom: 1.0rem;
+	float: left;
+}
+
+.tactical-combat-result-screen .statistics-panel .row .value-container img
+{
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-combat-result-screen .statistics-panel .row .value-container .value
+{
+	left: 3.0rem;
+	right: 0;
+	height: 3.0rem;
+	position: absolute;
+
+	text-align: left;
+	line-height: 3.2rem;
+}

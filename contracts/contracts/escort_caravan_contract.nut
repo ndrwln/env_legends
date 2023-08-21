@@ -558,7 +558,7 @@ this.escort_caravan_contract <- this.inherit("scripts/contracts/contract", {
 		this.m.Screens.push({
 			ID = "TaskSouthern",
 			Title = "Negotiations",
-			Text = "[img]gfx/ui/events/event_98.png[/img]{Nested in towers and aviaries, bells and birds alike echo in the air like the rattled voluntaries of a caged city. Beneath the noise, in the dull marbled halls of a palace, you find %employer% ordering the death of a servant. The offense is unknown to you, not that it bothers the Vizier in the slightest as he approaches you with a smile and clean hands.%SPEECH_ON%A number of councilmen are sending goods to %objective%, a good %days% to the %direction%. These goods must arrive in a shape that is passable to the awaiting merchants. I believe a Crownling such as yourself can see to this task, yes?%SPEECH_OFF% | You find a few of the councilmen and aldermen of %employer%, the resident Vizier. They approach you with a document stamped with his emblem.%SPEECH_ON%We shall soon be off for to %objective% with a caravan of goods. The city guard refuse to aide us in defending our wares, however we are still bright beneath the Gilder\'s eye, and our pockets full of shine. We\'ll pay you, Crownling, to help us to our destination for the next %days%.%SPEECH_OFF% | A servant boy carries a leash of slaves in one hand and a note in the other. He presents the latter which carries written instruction to meet with a set of merchants. They announce that they are traveling to %objective%, around %days% to the %direction%, under orders of the Gilder and Vizier alike, and need protection. For this, your services are needed and will be paid for quite handsomely. | The town\'s merchant square is rife with business and, apparently, you are wanted to be a part of it. A few of the Vizier\'s \'finest\' peddlers are wanting to take a caravan of goods to %objective%, a good %days% of travel. One explains tersely.%SPEECH_ON%If the Gilder might look the other way, I pray the so-called \'soldiers\' of this town find the world of shade. You, Crownling, I suspect you\'d be willing to help us where others are not? For coin, of course.%SPEECH_OFF% | You watch as slaves bundle goods and load them into a series of wagons. The caravan\'s owners spot you and seek you out, pushing their workforce out of the way or smacking them for apparently no reason at all other than it brings some unknown pleasure to do so. One beams with delight as he greets you. He puts one hand out, but you do not shake it.%SPEECH_ON%Ah, Crownling, it is true that this hand has profaned itself with the flesh of an indebted, but you shouldn\'t be so shy. We are all bright beneath the Gilder\'s eye, are we not? We\'ve a task for you, one of some import given the governance of our suzerain %employer%. The caravan is heading to %objective%, a good %days%\'s travel, and requires a fair bit of guard so that it may arrive in good health. Is this task amenable to your coin-seeking interests?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_98.png[/img]{Nested in towers and aviaries, bells and birds alike echo in the air like the rattled voluntaries of a caged city. Beneath the noise, in the dull marbled halls of a palace, you find %employer% ordering the death of a servant. The offense is unknown to you, not that it bothers the Vizier in the slightest as he approaches you with a smile and clean hands.%SPEECH_ON%A number of councilmen are sending goods to %objective%, a good %days% to the %direction%. These goods must arrive in a shape that is passable to the awaiting merchants. I believe a Crownling such as yourself can see to this task, yes?%SPEECH_OFF% | You find a few of the councilmen and aldermen of %employer%, the resident Vizier. They approach you with a document stamped with his emblem.%SPEECH_ON%We shall soon be off to %objective% with a caravan of goods. The city guard refuse to aide us in defending our wares, however we are still bright beneath the Gilder\'s eye, and our pockets full of shine. We\'ll pay you, Crownling, to help us to our destination for the next %days%.%SPEECH_OFF% | A servant boy carries a leash of slaves in one hand and a note in the other. He presents the latter which carries written instruction to meet with a set of merchants. They announce that they are traveling to %objective%, around %days% to the %direction%, under orders of the Gilder and Vizier alike, and need protection. For this, your services are needed and will be paid for quite handsomely. | The town\'s merchant square is rife with business and, apparently, you are wanted to be a part of it. A few of the Vizier\'s \'finest\' peddlers are wanting to take a caravan of goods to %objective%, a good %days% of travel. One explains tersely.%SPEECH_ON%If the Gilder might look the other way, I pray the so-called \'soldiers\' of this town find the world of shade. You, Crownling, I suspect you\'d be willing to help us where others are not? For coin, of course.%SPEECH_OFF% | You watch as slaves bundle goods and load them into a series of wagons. The caravan\'s owners spot you and seek you out, pushing their workforce out of the way or smacking them for apparently no reason at all other than it brings some unknown pleasure to do so. One beams with delight as he greets you. He puts one hand out, but you do not shake it.%SPEECH_ON%Ah, Crownling, it is true that this hand has profaned itself with the flesh of an indebted, but you shouldn\'t be so shy. We are all bright beneath the Gilder\'s eye, are we not? We\'ve a task for you, one of some import given the governance of our suzerain %employer%. The caravan is heading to %objective%, a good %days%\'s travel, and requires a fair bit of guard so that it may arrive in good health. Is this task amenable to your coin-seeking interests?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -1186,160 +1186,19 @@ this.escort_caravan_contract <- this.inherit("scripts/contracts/contract", {
 		party.setMovementSpeed(this.Const.World.MovementSettings.Speed * 0.6);
 		party.setLeaveFootprints(false);
 
-		if (this.m.Home.getProduce().len() != 0)
+		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
+		{
+			::Const.World.Common.WorldEconomy.setupTrade(party, this.m.Home, this.m.Destination);
+		}
+		else if (this.m.Home.getProduce().len() != 0)
 		{
 			local produce = 3;
-			local min = 1;
 			local L = this.m.Home.getProduce();
 
-			if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
+			for( local j = 0; j < produce; j = j )
 			{
-				switch(this.m.Home.getSize())
-				{
-				case 1:
-					min = 1;
-					break;
-
-				case 2:
-					min = 3;
-					break;
-
-				case 3:
-					min = 5;
-					break;
-				}
-
-				local scale = 0.0;
-
-				switch(this.getDifficulty())
-				{
-				case 1:
-					scale = 0.01;
-					break;
-
-				case 2:
-					scale = 0.025;
-					break;
-
-				case 3:
-					scale = 0.05;
-					break;
-
-				case 4:
-					scale = 0.1;
-				}
-
-				local resources = this.Math.max(min, this.Math.round(scale * this.m.Home.getResources()));
-				this.m.Home.setResources(this.m.Home.getResources() - resources);
-				party.setResources(resources);
-				produce = this.Math.max(min, min + this.Math.round(scale * this.m.Home.getResources()));
-				local items = [
-					[
-						1,
-						"supplies/bread_item"
-					],
-					[
-						1,
-						"supplies/roots_and_berries_item"
-					],
-					[
-						1,
-						"supplies/dried_fruits_item"
-					],
-					[
-						1,
-						"supplies/ground_grains_item"
-					],
-					[
-						1,
-						"supplies/bread_item"
-					],
-					[
-						1,
-						"supplies/dried_fish_item"
-					],
-					[
-						1,
-						"supplies/beer_item"
-					],
-					[
-						1,
-						"supplies/bread_item"
-					],
-					[
-						1,
-						"supplies/goat_cheese_item"
-					],
-					[
-						1,
-						"supplies/legend_fresh_fruit_item"
-					],
-					[
-						1,
-						"supplies/legend_fresh_meat_item"
-					],
-					[
-						1,
-						"supplies/legend_pie_item"
-					],
-					[
-						1,
-						"supplies/legend_porridge_item"
-					],
-					[
-						1,
-						"supplies/legend_pudding_item"
-					],
-					[
-						1,
-						"supplies/mead_item"
-					],
-					[
-						1,
-						"supplies/medicine_item"
-					],
-					[
-						1,
-						"supplies/pickled_mushrooms_item"
-					],
-					[
-						1,
-						"supplies/preserved_mead_item"
-					],
-					[
-						1,
-						"supplies/smoked_ham_item"
-					],
-					[
-						1,
-						"supplies/wine_item"
-					]
-				];
-
-				foreach( item in L )
-				{
-					items.push([
-						5,
-						item
-					]);
-				}
-
-				L = items;
-
-				for( local j = 0; j < produce; j = j )
-				{
-					local item = this.Const.World.Common.pickItem(items);
-					party.addToInventory(item);
-					j = ++j;
-				}
-			}
-			else
-			{
-				for( local j = 0; j < produce; j = j )
-				{
-					party.addToInventory(L[this.Math.rand(0, L.len() - 1)]);
-					j = ++j;
-				}
+				party.addToInventory(::MSU.Array.rand(L));
+				j = ++j;
 			}
 		}
 

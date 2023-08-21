@@ -1,0 +1,129 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Gabriel Uribe | 2015 - 
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			26.02.2015
+ *  @Description:	Tactical dialog Screen CSS
+ */
+
+.tactical-dialog-screen
+{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.tactical-dialog-screen > .l-dialog-container
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 60.0rem;
+	height: 30.0rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+
+	background-image: url("coui://gfx/ui/skin/popup_background_600x300.png");
+	background-size: 60.0rem 30.0rem;
+	background-repeat: no-repeat;
+}
+
+
+.tactical-dialog-screen > .l-dialog-container .content
+{
+	padding: 0.6rem;
+}
+
+.tactical-dialog-screen > .l-dialog-container .content .left-column
+{
+	width: 5.0rem;
+	height: 2.0rem;
+	position: relative;
+	float: left;
+}
+
+.tactical-dialog-screen > .l-dialog-container .left-column .l-dialog-image
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 4.0rem;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-dialog-screen > .l-dialog-container .l-dialog-image img
+{
+	width: 100%;
+	height: 100%;
+}
+
+
+.tactical-dialog-screen > .l-dialog-container .content .right-column
+{
+	top: -1.0rem;
+	width: 50rem;
+	position: relative;
+	float: left;
+}
+
+.tactical-dialog-screen > .l-dialog-container .right-column .dialog-title-label
+{
+	width: 100%;
+	height: 3.6rem;
+	position: relative;
+	float: left;
+	clear: left;
+
+	text-align: left;
+	line-height: 4.4rem;
+}
+
+.tactical-dialog-screen > .l-dialog-container .right-column .dialog-text
+{
+	width: 100%;
+	position: relative;
+	float: left;
+
+	text-align: left;
+}
+
+
+.tactical-dialog-screen > .l-dialog-container .footer .l-button-bar
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 1.0rem;
+	width: 40.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-dialog-screen > .l-dialog-container .footer .l-no-button
+{
+	width: 17.5rem;
+	float: left;
+
+	line-height: 3.0rem;
+}
+
+.tactical-dialog-screen > .l-dialog-container .footer .l-yes-button
+{
+	width: 17.5rem;
+	float: right;
+
+	line-height: 3.0rem;
+}

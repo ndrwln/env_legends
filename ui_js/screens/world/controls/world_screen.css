@@ -1,0 +1,61 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			23.09.2017
+ *  @Description:	World Screen CSS
+ */
+
+/*
+	World Screen: Module Specific
+*/
+.ui-control.world-screen .left-module-container
+{
+	/*background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 0 0 10px 0;
+	box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);
+	border: 1px rgba(130, 130, 130, 0.8) solid;*/
+	/*
+	border-bottom: 1px rgba(130, 130, 130, 0.8) solid;
+	border-right: 1px rgba(130, 130, 130, 0.8) solid;
+	*/
+
+	background-image: url("coui://gfx/ui/skin/hud_panel_left2.png");
+	background-size: 44.6rem 9.0rem/*4.8rem*/;
+	/*background-repeat: repeat-y;*/
+}
+
+.ui-control.world-screen .middle-module-container
+{
+	/*background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 0 0 10px 10px;
+	box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);
+	border: 1px rgba(130, 130, 130, 0.8) solid;*/
+	/*
+	border-bottom: 1px rgba(130, 130, 130, 0.8) solid;
+	border-left: 1px rgba(130, 130, 130, 0.8) solid;
+	border-right: 1px rgba(130, 130, 130, 0.8) solid;
+	*/
+
+	background-image: url("coui://gfx/ui/skin/worldmap_time_panel.png");
+	background-size: 12.8rem 4.8rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.world-screen .right-module-container
+{
+	/*background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 0 0 0 10px;
+	box-shadow: 0px 0px 2px 2px rgba(10, 10, 10, 0.8);
+	border: 1px rgba(130, 130, 130, 0.8) solid;*/
+	/*
+	border-bottom: 1px rgba(130, 130, 130, 0.8) solid;
+	border-left: 1px rgba(130, 130, 130, 0.8) solid;
+	*/
+
+	background-image: url("coui://gfx/ui/skin/hud_panel_right.png");
+	background-size: 44.6rem 4.8rem;
+}

@@ -67,71 +67,24 @@ this.send_supplies_action <- this.inherit("scripts/factions/faction_action", {
 		this.m.Dest = null;
 	}
 
+	function getReputationToDifficultyLightMult()
+	{
+		return this.faction_action.getReputationToDifficultyLightMult() * (this.World.FactionManager.isCivilWar() ? 1.1 : 1.0);
+	}
+
+	function getResourcesForParty( _settlement, _faction )
+	{
+		if (_settlement == null)
+		{
+			return this.Math.rand(100, 200) * this.getReputationToDifficultyLightMult();
+		}
+
+		return (this.Math.rand(87, 135) + this.Math.round(0.11 * ::Math.max(1, _settlement.getResources()))) * this.getReputationToDifficultyLightMult();
+	}
+
 	function onExecute( _faction )
 	{
-		local party;
-		local value = 0;
-		local tradegoods = 0;
-		local totalValue = 0;
-		local itemList = [];
-
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			foreach( building in this.m.Start.getBuildings() )
-			{
-				local stash = building.getStash();
-
-				if (stash != null)
-				{
-					foreach( item in stash.getItems() )
-					{
-						if (item == null)
-						{
-							continue;
-						}
-
-						if (item.isItemType(this.Const.Items.ItemType.TradeGood))
-						{
-							tradegoods = tradegoods + item.getResourceValue();
-							itemList.append(item);
-						}
-						else if (this.Math.rand(1, 10) == 1)
-						{
-							if (item.getValue() > 0)
-							{
-								value = value + item.getValue() * 0.01;
-							}
-
-							itemList.append(item);
-						}
-					}
-				}
-			}
-
-			value = this.Math.floor(value);
-			tradegoods = this.Math.floor(tradegoods);
-			totalValue = value + tradegoods;
-		}
-		else
-		{
-			tradegoods = this.Math.round(0.1 * this.m.Start.getResources());
-			totalValue = this.m.Start.getResources() * 0.1;
-		}
-
-		local spawnParty = this.Const.World.Spawn.NobleCaravan;
-		local r = this.Math.rand(1, 100);
-
-		if (r > 75)
-		{
-			spawnParty = this.Const.World.Spawn.Mercenaries;
-		}
-		else if (r > 50)
-		{
-			spawnParty = this.Const.World.Spawn.MixedNobleCaravan;
-		}
-
-		r = this.Math.rand(100, 200) * 0.01;
-		local party = _faction.spawnEntity(this.m.Start.getTile(), "Supply Caravan", false, spawnParty, r * 100 + this.Math.round(totalValue * 2));
+		local party = _faction.spawnEntity(this.m.Start.getTile(), "Supply Caravan", false, this.pickSpawnList(this.m.Start, _faction), this.getResourcesForParty(this.m.Start, _faction));
 		party.getSprite("body").setBrush(this.Const.World.Spawn.NobleCaravan.Body);
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
@@ -139,7 +92,6 @@ this.send_supplies_action <- this.inherit("scripts/factions/faction_action", {
 		party.setFootprintType(this.Const.World.FootprintsType.Caravan);
 		party.getFlags().set("IsCaravan", true);
 		party.getFlags().set("IsRandomlySpawned", true);
-		party.setOrigin(this.m.Start);
 
 		if (this.World.Assets.m.IsBrigand && this.m.Start.getTile().getDistanceTo(this.World.State.getPlayer().getTile()) <= 70)
 		{
@@ -148,68 +100,15 @@ this.send_supplies_action <- this.inherit("scripts/factions/faction_action", {
 			party.setDiscovered(true);
 		}
 
-		if (this.m.Start.getProduce().len() != 0)
-		{
-			local produce = 3;
-
-			if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-			{
-				produce = this.Math.max(3, 3 + this.Math.round(0.05 * this.m.Start.getResources()));
-			}
-
-			local getAsString = !::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue();
-
-			for( local j = 0; j < produce; j = j )
-			{
-				local p = ::MSU.Array.rand(this.m.Start.getProduce());
-				party.addToInventory(getAsString ? p : this.new("scripts/items/" + p));
-				j = ++j;
-			}
-		}
-
-		party.getLoot().Money = this.Math.floor(this.Math.rand(0, 100) * r);
-		local r = this.Math.rand(1, 3);
-
-		if (r == 1)
-		{
-			party.getLoot().ArmorParts = this.Math.rand(15 * r, 30 * r);
-		}
-		else if (r == 2)
-		{
-			party.getLoot().Medicine = this.Math.rand(10 * r, 20 * r);
-		}
-		else if (r == 3)
-		{
-			party.getLoot().Ammo = this.Math.rand(25 * r, 50 * r);
-		}
+		this.addLoot(party);
 
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 		{
-			foreach( item in itemList )
-			{
-				party.addToInventory(item);
-			}
+			::Const.World.Common.WorldEconomy.setupTrade(party, this.m.Start, this.m.Dest);
 		}
 		else
 		{
-			local r = this.Math.rand(1, 4);
-
-			if (r == 1)
-			{
-				party.addToInventory("supplies/bread_item");
-			}
-			else if (r == 2)
-			{
-				party.addToInventory("supplies/roots_and_berries_item");
-			}
-			else if (r == 3)
-			{
-				party.addToInventory("supplies/dried_fruits_item");
-			}
-			else if (r == 4)
-			{
-				party.addToInventory("supplies/ground_grains_item");
-			}
+			this.addToPartyInventory(party);
 		}
 
 		local c = party.getController();
@@ -223,6 +122,65 @@ this.send_supplies_action <- this.inherit("scripts/factions/faction_action", {
 		c.addOrder(move);
 		c.addOrder(unload);
 		c.addOrder(despawn);
+		this.afterSpawnCaravan(party);
+	}
+
+	function pickSpawnList( _settlement, _faction )
+	{
+		switch(::Math.rand(1, 4))
+		{
+		case 1:
+			return this.Const.World.Spawn.Mercenaries;
+
+		case 2:
+			return this.Const.World.Spawn.MixedNobleCaravan;
+		}
+
+		return this.Const.World.Spawn.NobleCaravan;
+	}
+
+	function addLoot( _party )
+	{
+		switch(::Math.rand(1, 3))
+		{
+		case 1:
+			_party.getLoot().ArmorParts = this.Math.rand(15, 30);
+			break;
+
+		case 2:
+			_party.getLoot().Medicine = this.Math.rand(20, 40);
+			break;
+
+		default:
+			_party.getLoot().Ammo = this.Math.rand(75, 150);
+		}
+
+		_party.getLoot().Money = this.Math.floor(this.Math.rand(0, 100) * this.Math.rand(100, 200) * 0.01);
+	}
+
+	function addToPartyInventory( _party )
+	{
+		switch(::Math.rand(1, 4))
+		{
+		case 1:
+			_party.addToInventory("supplies/bread_item");
+			break;
+
+		case 2:
+			_party.addToInventory("supplies/roots_and_berries_item");
+			break;
+
+		case 3:
+			_party.addToInventory("supplies/dried_fruits_item");
+			break;
+
+		default:
+			_party.addToInventory("supplies/ground_grains_item");
+		}
+	}
+
+	function afterSpawnCaravan( _party )
+	{
 	}
 
 });

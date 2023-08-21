@@ -640,7 +640,11 @@ this.player <- this.inherit("scripts/entity/tactical/human", {
 
 				if (this.m.LifetimeStats.MostPowerfulVanquished != "")
 				{
-					text = text + (" The most powerful opponent he vanquished was " + this.m.LifetimeStats.MostPowerfulVanquished + ".");
+					local vanquishedText = "{" + (" The most powerful opponent %they% vanquished was " + this.m.LifetimeStats.MostPowerfulVanquished + ".") + "}";
+					local vars = [];
+					this.Const.LegendMod.extendVarsWithPronouns(vars, this.getGender());
+					vanquishedText = this.buildTextFromTemplate(vanquishedText, vars);
+					text = text + vanquishedText;
 				}
 			}
 
@@ -1224,6 +1228,7 @@ this.player <- this.inherit("scripts/entity/tactical/human", {
 			stub.addSprite("blood_2").setBrush(this.Const.BloodDecals[this.Const.BloodType.Red][this.Math.rand(0, this.Const.BloodDecals[this.Const.BloodType.Red].len() - 1)]);
 			stub.setSpriteOffset("blood_1", this.createVec(0, -15));
 			stub.setSpriteOffset("blood_2", this.createVec(0, -30));
+			stub.setGender(this.getGender());
 
 			if (_fatalityType == this.Const.FatalityType.Devoured)
 			{
@@ -1484,7 +1489,7 @@ this.player <- this.inherit("scripts/entity/tactical/human", {
 
 		foreach( bro in roster )
 		{
-			if (bro.isInReserves() && bro.getSkills().hasSkill("perk.legend_peaceful"))
+			if (bro.isInReserves() && bro.getSkills().hasSkill("perk.legend_pacifist"))
 			{
 				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
 			}

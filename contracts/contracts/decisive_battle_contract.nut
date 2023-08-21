@@ -1254,27 +1254,56 @@ this.decisive_battle_contract <- this.inherit("scripts/contracts/contract", {
 				party.getLoot().ArmorParts = this.Math.rand(0, 10);
 				party.getLoot().Medicine = this.Math.rand(0, 2);
 				party.getLoot().Ammo = this.Math.rand(0, 20);
-				local r = this.Math.rand(1, 6);
 
-				if (r == 1)
+				if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 				{
-					party.addToInventory("supplies/bread_item");
+					switch(this.Math.rand(1, 6))
+					{
+					case 1:
+						party.addToInventory(this.new("scripts/items/supplies/bread_item"));
+						break;
+
+					case 2:
+						party.addToInventory(this.new("scripts/items/supplies/roots_and_berries_item"));
+						break;
+
+					case 3:
+						party.addToInventory(this.new("scripts/items/supplies/dried_fruits_item"));
+						break;
+
+					case 4:
+						party.addToInventory(this.new("scripts/items/supplies/ground_grains_item"));
+						break;
+
+					case 5:
+						party.addToInventory(this.new("scripts/items/supplies/pickled_mushrooms_item"));
+						break;
+					}
 				}
-				else if (r == 2)
+				else
 				{
-					party.addToInventory("supplies/roots_and_berries_item");
-				}
-				else if (r == 3)
-				{
-					party.addToInventory("supplies/dried_fruits_item");
-				}
-				else if (r == 4)
-				{
-					party.addToInventory("supplies/ground_grains_item");
-				}
-				else if (r == 5)
-				{
-					party.addToInventory("supplies/pickled_mushrooms_item");
+					switch(this.Math.rand(1, 6))
+					{
+					case 1:
+						party.addToInventory("supplies/bread_item");
+						break;
+
+					case 2:
+						party.addToInventory("supplies/roots_and_berries_item");
+						break;
+
+					case 3:
+						party.addToInventory("supplies/dried_fruits_item");
+						break;
+
+					case 4:
+						party.addToInventory("supplies/ground_grains_item");
+						break;
+
+					case 5:
+						party.addToInventory("supplies/pickled_mushrooms_item");
+						break;
+					}
 				}
 
 				local c = party.getController();

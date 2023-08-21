@@ -51,6 +51,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		this.m.UIImage = "ui/settlements/blackmarket_day";
 		this.m.UIImageNight = "ui/settlements/blackmarket_night";
 		this.m.Tooltip = "world-town-screen.main-dialog-module.Blackmarket";
+		this.m.TooltipIcon = "ui/icons/buildings/blackmarket.png";
 		this.m.IsClosedAtDay = true;
 		this.m.IsClosedAtNight = false;
 		this.m.Stash = this.new("scripts/items/stash_container");
@@ -524,9 +525,29 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				S = "special/bodily_reward_item"
 			},
 			{
-				R = 99,
+				R = 90,
 				P = 20.0,
-				S = "special/fountain_of_youth_item"
+				S = "legend_armor/runes/legend_rune_safety"
+			},
+			{
+				R = 90,
+				P = 20.0,
+				S = "legend_armor/runes/legend_rune_endurance"
+			},
+			{
+				R = 90,
+				P = 20.0,
+				S = "legend_helmets/runes/legend_rune_luck"
+			},
+			{
+				R = 90,
+				P = 20.0,
+				S = "legend_helmets/runes/legend_rune_bravery"
+			},
+			{
+				R = 90,
+				P = 20.0,
+				S = "legend_helmets/runes/legend_rune_clarity"
 			},
 			{
 				R = 30,

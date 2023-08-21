@@ -1769,10 +1769,22 @@ this.siege_fortification_contract <- this.inherit("scripts/contracts/contract", 
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
 		party.setDescription("A caravan with armed escorts transporting provisions, supplies and equipment between settlements.");
-		party.addToInventory("supplies/ground_grains_item");
-		party.addToInventory("supplies/ground_grains_item");
-		party.addToInventory("supplies/ground_grains_item");
-		party.addToInventory("supplies/ground_grains_item");
+
+		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
+		{
+			for( local i = 0; i < 5; i = ++i )
+			{
+				party.addToInventory(this.new("scripts/items/supplies/ground_grains_item"));
+			}
+		}
+		else
+		{
+			for( local i = 0; i < 5; i = ++i )
+			{
+				party.addToInventory("supplies/ground_grains_item");
+			}
+		}
+
 		party.getLoot().Money = this.Math.rand(0, 100);
 		local c = party.getController();
 		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);

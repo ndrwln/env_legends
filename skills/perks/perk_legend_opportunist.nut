@@ -13,36 +13,50 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_targetEntity == null)
+		if (_skill != null)
+		{
+			if (!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(this.getContainer().getActor()))
+			{
+				return;
+			}
+		}
+
+		if (_targetEntity.getCurrentProperties().IsImmuneToDaze)
 		{
 			return;
 		}
 
-		if (!_targetEntity.isAlliedWith(this.getContainer().getActor()))
+		foreach( id in [
+			"effects.legend_grazed_effect",
+			"effects.bleeding",
+			"effects.goblin_poison",
+			"effects.spider_poison",
+			"effects.legend_redback_spider_poison",
+			"effects.legend_zombie_poison",
+			"effects.legend_rat_poison",
+			"injury.cut_artery",
+			"injury.cut_throat",
+			"injury.grazed_neck"
+		] )
 		{
-			if (_targetEntity.getSkills().hasSkill("effects.legend_grazed_effect") || _targetEntity.getSkills().hasSkill("effects.bleeding") || _targetEntity.getSkills().hasSkill("effects.goblin_poison") || _targetEntity.getSkills().hasSkill("effects.spider_poison") || _targetEntity.getSkills().hasSkill("effects.legend_redback_spider_poison"))
+			if (!_targetEntity.getSkills().hasSkill(id))
 			{
-				local effect = this.new("scripts/skills/effects/dazed_effect");
-				_targetEntity.getSkills().add(effect);
+				continue;
 			}
+
+			_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+			break;
 		}
 	}
 
 	function onUpdate( _properties )
 	{
-		local actor = this.getContainer().getActor();
-
-		if (actor.getSkills().hasSkill("effects.smoke"))
+		if (this.getContainer().hasSkill("effects.smoke"))
 		{
 			_properties.RangedSkillMult *= 1.5;
 			_properties.MeleeSkillMult *= 1.1;
-		}
-
-		if (!this.getContainer().getActor().isPlacedOnMap())
-		{
-			return;
 		}
 	}
 

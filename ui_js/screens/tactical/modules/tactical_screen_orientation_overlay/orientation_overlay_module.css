@@ -1,0 +1,50 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			31.10.2013 (reworked: 14.03.2017)
+ *  @Description:	Tactical Screen: Orientation Overlay Module CSS
+ */
+
+
+.tactical-screen .orientation-overlay-module
+{
+	/*background-color: rgba(100, 0, 0, 0.6);*/
+
+	top	 : 0;
+	left	: 0;
+	width   : 100%;
+	height  : 100%;
+	position: absolute;
+	
+	pointer-events: none;
+}
+
+.tactical-screen .orientation-overlay-module .overlay
+{
+	background-color: rgba(0, 0, 0, 0.01);/* Note: Alpha Hack to not get Input Events within c++ */
+
+	width   : 4.5rem;
+	height  : 4.5rem;
+	position: absolute;
+	z-index : 1;
+
+	pointer-events : auto;
+}
+
+.tactical-screen .orientation-overlay-module .overlay.is-enabled
+{
+	background-color: rgba(0, 0, 0, 0.01);
+
+	pointer-events : auto;
+}
+
+.tactical-screen .orientation-overlay-module .overlay.is-disabled
+{
+	background-color: rgba(0, 0, 0, 0);
+	
+	pointer-events : none;
+}
