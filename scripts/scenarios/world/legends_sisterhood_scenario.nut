@@ -140,7 +140,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local garbage = [];
 		local bros = _roster.getAll();

@@ -4,7 +4,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 		this.m.ID = "scenario.legends_nomad";
 		this.m.Name = "Nomad Tribe";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_170.png[/img][/p][p]Displaced from your land, take control of 4 nomads and a conscript hunted in the desert. \n[color=#bcad8c]Hunted:[/color] Start in the desert away from civilisation. City States are hostile and will always decline in favour with you while Northern Nobles will have a cold relationship with you but will not decline. The more nomads in your party the stronger this effect will be.\n[color=#bcad8c]Nomadic:[/color] Vision radius is increased by 30% on the world map. Settlements may contain Nomads and Bladedancers displaced from their lands willing to fight for you.\n[color=#bcad8c]The Path of the Interloper:[/color] Nomads and Muladis gain the \'Wind Reader\' perk when recruited. Bladedancers gain the \'Dodge\' perk. Other Nomads are friendly to you.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_170.png[/img][/p][p]Displaced from your land, take control of 4 nomads and a conscript hunted in the desert. \n[color=#bcad8c]Hunted:[/color] Start in the desert away from civilisation. City States are hostile and will always decline in favour with you while Northern Nobles will have a cold relationship with you but will not decline. The more nomads in your party the stronger this effect will be.\n[color=#bcad8c]Nomadic:[/color] Vision radius is increased by 30% on the world map. Settlements may contain Nomads and Bladedancers displaced from their lands willing to fight for you. Nomads, Muladis and Bladedancers cost 25% less to hire and upkeep.\n[color=#bcad8c]The Path of the Interloper:[/color] Nomads and Muladis gain the \'Wind Reader\' perk when recruited. Bladedancers gain the \'Dodge\' perk. Other Nomads are friendly to you.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 181;
 		this.m.IsFixedLook = true;
@@ -215,23 +215,36 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 	function onGenerateBro( bro )
 	{
+		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.muladi" || bro.getBackground().getID() == "background.legend_bladedancer")
+		{
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75);
+			bro.getBaseProperties().DailyWageMult *= 0.75;
+		}
+		else
+		{
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+			bro.getBaseProperties().DailyWageMult *= 1.0;
+			bro.getSkills().update();
+		}
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
-		if (::MSU.isKindOf(_settlement, "city_state"))
+		local settlement = this.getCurrentSettlement();
+
+		if (::MSU.isKindOf(settlement, "city_state"))
 		{
 			this.addBroToRoster(_roster, "nomad_background", 3);
 			this.addBroToRoster(_roster, "nomad_ranged_background", 3);
 			this.addBroToRoster(_roster, "legend_bladedancer_background", 4);
 		}
-		else if (::MSU.isKindOf(_settlement, "legends_steppe_fort") || _settlement.isMilitary() && this.isSteppeSettlement(_settlement))
+		else if (::MSU.isKindOf(settlement, "legends_steppe_fort") || settlement.isMilitary() && this.isSteppeSettlement(settlement))
 		{
 			this.addBroToRoster(_roster, "nomad_background", 3);
 			this.addBroToRoster(_roster, "nomad_ranged_background", 3);
 			this.addBroToRoster(_roster, "legend_bladedancer_background", 4);
 		}
-		else if (::MSU.isKindOf(_settlement, "legends_steppe_village") || this.isSteppeSettlement(_settlement))
+		else if (::MSU.isKindOf(settlement, "legends_steppe_village") || this.isSteppeSettlement(settlement))
 		{
 			this.addBroToRoster(_roster, "nomad_background", 4);
 			this.addBroToRoster(_roster, "nomad_ranged_background", 4);

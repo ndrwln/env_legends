@@ -445,6 +445,7 @@ gt.Const.EntityType <- {
 	SatoManhunterVeteranRanged = 167,
 	LegendNobleGuard = 168,
 	LegendManAtArms = 169,
+	LegendCaravanPolearm = 170,
 	function convertOldToNew( _id )
 	{
 		switch(_id)
@@ -653,6 +654,7 @@ gt.Const.EntityType <- {
 		case this.Const.EntityType.CaravanHand:
 		case this.Const.EntityType.CaravanGuard:
 		case this.Const.EntityType.CaravanDonkey:
+		case this.Const.EntityType.LegendCaravanPolearm:
 			return this.Const.FactionType.Settlement;
 
 		case this.Const.EntityType.Footman:
@@ -976,6 +978,7 @@ gt.Const.EntityIcon <- [
 	"nomad_02",
 	"nomad_05",
 	"footman_veteran_orientation",
-	"footman_veteran_orientation"
+	"footman_veteran_orientation",
+	"caravan_hand_orientation"
 ];
 

@@ -675,6 +675,20 @@ this.faction <- {
 		return party;
 	}
 
+	function spawnHostileEntity( _tile, _name, _uniqueName, _template, _resources, _resetDummyFaction = true )
+	{
+		if (this.isAlliedWithPlayer())
+		{
+			local df = ::World.FactionManager.getDummyFaction();
+			df.setMimicValues(this.getID(), _resetDummyFaction);
+			return df.spawnEntity(_tile, _name, _uniqueName, _template, _resources);
+		}
+		else
+		{
+			return this.spawnEntity(_tile, _name, _uniqueName, _template, _resources);
+		}
+	}
+
 	function getNearestSettlement( _tile, _notOfType = 0 )
 	{
 		local d = 9000;

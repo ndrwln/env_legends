@@ -154,7 +154,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		}
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local garbage = [];
 		local bros = _roster.getAll();

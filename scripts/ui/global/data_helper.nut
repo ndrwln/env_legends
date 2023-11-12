@@ -43,6 +43,17 @@ this.data_helper <- {
 		}
 
 		d = d + ")";
+		local legendsVersionText = "";
+
+		if (_meta.getString("legendsVersion") == "")
+		{
+			legendsVersionText = "";
+		}
+		else
+		{
+			legendsVersionText = "Legends Version: " + _meta.getString("legendsVersion");
+		}
+
 		return {
 			fileName = _meta.getFileName(),
 			name = _meta.getName(),
@@ -51,7 +62,8 @@ this.data_helper <- {
 			dayName = "Day " + _meta.getInt("days") + d,
 			creationDate = _meta.getCreationDate(),
 			isIncompatibleVersion = _meta.getVersion() < 33 || _meta.getVersion() > this.Const.Serialization.Version || !this.Const.DLC.isCompatible(_meta),
-			isIronman = _meta.getInt("ironman") == 1
+			isIronman = _meta.getInt("ironman") == 1,
+			legendsVersion = legendsVersionText
 		};
 	}
 

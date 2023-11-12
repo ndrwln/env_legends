@@ -7,7 +7,7 @@ this.legend_armor_plate_ancient_scale_harness <- this.inherit("scripts/items/leg
 		this.m.ID = "legend_armor.body.legend_armor_plate_ancient_scale_harness";
 		this.m.Name = "Ancient Scale Harness";
 		this.m.Description = "A sturdy, but heavy and partly decayed ancient scale harness.";
-		this.m.ArmorDescription = "Includes an heavy and partly decayed ancient scale harness.";
+		this.m.ArmorDescription = "Includes a heavy and partly decayed ancient scale harness.";
 		this.m.Variants = [
 			1
 		];

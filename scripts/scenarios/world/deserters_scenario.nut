@@ -235,7 +235,7 @@ this.deserters_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		}, null);
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		this.addBroToRoster(_roster, "deserter_background", 3);
 		this.addBroToRoster(_roster, "militia_background", 6);

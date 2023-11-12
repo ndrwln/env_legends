@@ -619,7 +619,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			NAME = this.getUpgrade(0).getName() + " on " + this.getName();
 		}
 
-		if (this.getUpgrade(5) != null)
+		if (this.getUpgrade(4) != null)
 		{
 			NAME = "[color=" + this.Const.UI.Color.RuneColor + "] (Runed)[/color]" + NAME;
 		}
@@ -643,7 +643,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			{
 				id = 1,
 				type = "title",
-				text = this.getName()
+				text = this.makeName()
 			},
 			{
 				id = 2,

@@ -247,7 +247,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.World.Assets.m.FootprintVision = 1.5;
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		this.addBroToRoster(_roster, "beast_hunter_background", 7);
 		this.addBroToRoster(_roster, "legend_guildmaster_background", 10);

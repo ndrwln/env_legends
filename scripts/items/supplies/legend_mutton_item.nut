@@ -6,7 +6,7 @@ this.legend_mutton_item <- this.inherit("scripts/items/supplies/legend_usable_fo
 		this.m.ID = "supplies.legend_mutton";
 		this.m.Name = "Mutton";
 		this.m.Description = "Provisions. Tender meat from a goat or lamb, succulent and flavorful. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
-		this.m.Icon = "supplies/legend_placeholder.png";
+		this.m.Icon = "supplies/legend_mutton.png";
 		this.m.Amount = 20;
 		this.m.Value = 40;
 		this.m.GoodForDays = 1;

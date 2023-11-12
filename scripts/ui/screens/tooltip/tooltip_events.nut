@@ -1518,7 +1518,7 @@ this.tooltip_events <- {
 				id = 3,
 				type = "hint",
 				icon = "ui/icons/asset_supplies.png",
-				text = " [color=" + this.Const.UI.Color.PositiveValue + "]" + toolsMult + "%[/color] Reduction Multplier"
+				text = " [color=" + this.Const.UI.Color.PositiveValue + "]" + toolsMult + "%[/color] Reduction Multiplier"
 			});
 			ret.push({
 				id = 4,

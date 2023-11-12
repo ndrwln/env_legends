@@ -6,7 +6,7 @@ this.legend_helmet_kettle_helm_high <- this.inherit("scripts/items/legend_helmet
 		this.m.Type = this.Const.Items.HelmetUpgrades.Helm;
 		this.m.ID = "armor.head.legend_helmet_kettle_helm_high";
 		this.m.Name = "Hardened Kettle Helm";
-		this.m.Description = "A hardended full-metal helmet with a broad rim, excellent quality and military grade.";
+		this.m.Description = "A hardened full-metal helmet with a broad rim, excellent quality and military grade.";
 		this.m.ArmorDescription = this.m.Description;
 		this.m.Variants = [
 			1,

@@ -155,7 +155,7 @@ this.legends_druid_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		this.addBroToRoster(_roster, "legend_druid_background", 8);
 		local bros = _roster.getAll();

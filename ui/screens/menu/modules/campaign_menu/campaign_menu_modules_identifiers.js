@@ -19,6 +19,7 @@ var CampaignMenuModulesIdentifier =
 		GroupName: 'groupName',
 		Image: 'banner',
 		DayName: 'dayName',
-		CreationDate: 'creationDate'
+		CreationDate: 'creationDate',
+		LegendsVersion: 'legendsVersion'
 	}
 };

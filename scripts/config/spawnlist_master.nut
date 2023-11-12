@@ -718,6 +718,14 @@ gt.Const.World.Spawn.Troops <- {
 		Row = 2,
 		Script = "scripts/entity/tactical/humans/caravan_hand"
 	},
+	LegendCaravanPolearm = {
+		ID = this.Const.EntityType.LegendCaravanPolearm,
+		Variant = 0,
+		Strength = 12,
+		Cost = 12,
+		Row = 3,
+		Script = "scripts/entity/tactical/humans/legend_caravan_polearm"
+	},
 	CaravanGuard = {
 		ID = this.Const.EntityType.CaravanGuard,
 		Variant = 0,
@@ -1720,6 +1728,15 @@ gt.Const.World.Spawn.Caravan <- {
 				{
 					Type = this.Const.World.Spawn.Troops.CaravanGuard,
 					Cost = 15
+				}
+			]
+		},
+		{
+			Weight = 15,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendCaravanPolearm,
+					Cost = 12
 				}
 			]
 		}

@@ -143,6 +143,25 @@ gt.Const.Tactical.Actor.CaravanHand <- {
 	],
 	FatigueRecoveryRate = 15
 };
+gt.Const.Tactical.Actor.LegendCaravanPolearm <- {
+	XP = 125,
+	ActionPoints = 9,
+	Hitpoints = 55,
+	Bravery = 40,
+	Stamina = 125,
+	MeleeSkill = 47,
+	RangedSkill = 30,
+	MeleeDefense = -2,
+	RangedDefense = 5,
+	Initiative = 90,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
+};
 gt.Const.Tactical.Actor.CaravanGuard <- {
 	XP = 200,
 	ActionPoints = 9,

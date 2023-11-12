@@ -162,6 +162,7 @@ gt.Const.LegendMod.FavoriteCaravan <- [
 	this.Const.EntityType.LegendPeasantWitchHunter,
 	this.Const.EntityType.CaravanHand,
 	this.Const.EntityType.CaravanGuard,
+	this.Const.EntityType.LegendCaravanPolearm,
 	this.Const.EntityType.Militia,
 	this.Const.EntityType.MilitiaVeteran,
 	this.Const.EntityType.MilitiaCaptain,
@@ -414,6 +415,7 @@ gt.Const.LegendMod.GetFavoriteEnemyValue <- function ( _type )
 	case this.Const.EntityType.Peasant:
 		return 25;
 
+	case this.Const.EntityType.LegendCaravanPolearm:
 	case this.Const.EntityType.CaravanHand:
 		return 10;
 

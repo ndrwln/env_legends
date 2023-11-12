@@ -291,7 +291,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bro.improveMood(0.5, "Learned a new skill");
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local garbage = [];
 		local bros = _roster.getAll();

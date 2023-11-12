@@ -5,7 +5,7 @@ this.winery_location <- this.inherit("scripts/entity/world/attached_location", {
 		this.attached_location.create();
 		this.m.Name = "Winery";
 		this.m.ID = "attached_location.winery";
-		this.m.Description = "This winery is surrounded by a large vineyard. The wine produced here is a priced commodity in wealthier circles.";
+		this.m.Description = "This winery is surrounded by a large vineyard. The wine produced here is a prized commodity in wealthier circles.";
 		this.m.Sprite = "world_winery_01";
 		this.m.SpriteDestroyed = "world_winery_01_ruins";
 	}

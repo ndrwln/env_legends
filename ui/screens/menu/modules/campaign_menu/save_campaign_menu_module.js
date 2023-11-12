@@ -383,6 +383,11 @@ SaveCampaignMenuModule.prototype.addCampaignEntryToList = function (_data)
 		}
 	}
 
+	if (CampaignMenuModulesIdentifier.Campaign.LegendsVersion in _data)
+	{
+		entry.assignListCampaignLegendsVersion(_data[CampaignMenuModulesIdentifier.Campaign.LegendsVersion]);
+	}
+
 	if (CampaignMenuModulesIdentifier.Campaign.CreationDate in _data)
 	{
 		entry.assignListCampaignDateTime(_data[CampaignMenuModulesIdentifier.Campaign.CreationDate]);

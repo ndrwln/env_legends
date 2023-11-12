@@ -136,7 +136,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		}
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local garbage = [];
 		local bros = _roster.getAll();

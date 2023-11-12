@@ -73,6 +73,11 @@ this.bandit_rabble <- this.inherit("scripts/entity/tactical/randomized_unit_abst
 		this.setDirty(true);
 	}
 
+	function assignRandomEquipment()
+	{
+		this.randomized_unit_abstract.assignRandomEquipment();
+	}
+
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())

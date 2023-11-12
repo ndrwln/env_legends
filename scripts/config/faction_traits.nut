@@ -21,6 +21,7 @@ gt.Const.FactionTrait <- {
 	OrientalCityState = 18,
 	OrientalBandits = 19,
 	FreeCompany = 20,
+	DummyFaction = 21,
 	Actions = [
 		[],
 		[],
@@ -201,6 +202,7 @@ gt.Const.FactionTrait <- {
 			"scripts/factions/actions/send_nomad_roamers_action",
 			"scripts/factions/actions/defend_nomad_action"
 		],
+		[],
 		[]
 	]
 };

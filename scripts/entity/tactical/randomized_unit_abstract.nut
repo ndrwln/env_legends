@@ -5,6 +5,7 @@ this.randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", {
 		DefensePerkList = [],
 		TraitsPerkList = [],
 		WeaponsAndTrees = [],
+		Shields = [],
 		GuaranteedPerks = [],
 		LegendaryPerks = [],
 		LevelRange = [
@@ -46,7 +47,7 @@ this.randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", {
 		this.m.EnemyLevel = this.Math.rand(this.m.LevelRange[0], this.m.LevelRange[1]);
 		this.m.XP = this.m.EnemyLevel * 35;
 
-		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (this.World.Assets.getCombatDifficulty() != this.Const.Difficulty.Legendary)
 		{
 			this.m.PerkPower -= 1;
 		}
@@ -156,27 +157,82 @@ this.randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignWeapon()
 	{
-		local idx = this.Math.rand(0, this.m.WeaponsAndTrees.len() - 1);
-		local selection = this.m.WeaponsAndTrees[idx];
-		this.m.Items.equip(this.new(selection[0]));
+		local selection = this.Const.GetWeaponAndTree(this.m.WeaponsAndTrees);
+		local weaponScriptAndChances = selection[0];
+		this.m.Items.equip(this.new(weaponScriptAndChances[0]));
 		local weapon = this.getMainhandItem();
-		local weaponPerkTree = this.Const.GetWeaponPerkTree(weapon);
+		local weaponID = this.getMainhandItem().getID();
 
-		if (typeof weaponPerkTree == "array")
+		if (selection.len() > 1 && ("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
 		{
-			weaponPerkTree = weaponPerkTree[this.Math.rand(0, weaponPerkTree.len() - 1)];
+			this.addAll(selection[1]);
 		}
 
-		if (weaponPerkTree != null && selection.len() >= 2 && this.Math.rand(1, 100) <= selection[1])
+		local weaponPerkTree = this.Const.GetWeaponPerkTree(weapon);
+		weaponPerkTree = weaponPerkTree[this.Math.rand(0, weaponPerkTree.len() - 1)];
+
+		if (weaponPerkTree != null && weaponScriptAndChances.len() >= 2 && this.Math.rand(1, 100) <= weaponScriptAndChances[1])
 		{
 			this.pickPerk(this.m.PerkPower, weaponPerkTree, this.m.EnemyLevel - 1);
 		}
 
 		local weaponClassTree = this.Const.GetWeaponClassTree(weapon);
 
-		if (weaponClassTree != null && selection.len() >= 3 && this.Math.rand(1, 100) <= selection[2])
+		if (weaponClassTree != null && weaponScriptAndChances.len() >= 3 && this.Math.rand(1, 100) <= weaponScriptAndChances[2])
 		{
 			this.pickPerk(this.m.PerkPower, weaponClassTree, this.m.EnemyLevel - 1, true);
+		}
+	}
+
+	function assignShield()
+	{
+		if (this.m.Shields.len() == 0)
+		{
+			return;
+		}
+
+		if (this.m.Skills.hasSkill("perk.duelist"))
+		{
+			return;
+		}
+
+		if (this.getMainhandItem().isItemType(this.Const.Items.ItemType.TwoHanded))
+		{
+			return;
+		}
+
+		local candidates = [];
+		local totalWeight = 0;
+
+		foreach( shield in this.m.Shields )
+		{
+			if (shield[0] == 0)
+			{
+				continue;
+			}
+
+			candidates.push(shield);
+			totalWeight = totalWeight + shield[0];
+		}
+
+		local r = this.Math.rand(0, totalWeight);
+
+		foreach( shield in candidates )
+		{
+			r = r - shield[0];
+
+			if (r > 0)
+			{
+				continue;
+			}
+
+			if (shield[1] == "")
+			{
+				return;
+			}
+
+			this.m.Items.equip(this.new(shield[1]));
+			return;
 		}
 	}
 
@@ -185,6 +241,7 @@ this.randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", {
 		this.assignWeapon();
 		this.assignOutfit();
 		this.assignPerks();
+		this.assignShield();
 	}
 
 });

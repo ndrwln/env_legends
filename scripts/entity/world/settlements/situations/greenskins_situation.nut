@@ -5,12 +5,13 @@ this.greenskins_situation <- this.inherit("scripts/entity/world/settlements/situ
 		this.situation.create();
 		this.m.ID = "situation.greenskins";
 		this.m.Name = "Marauding Greenskins";
-		this.m.Description = "Greenskins are terrorizing the surrounding lands, and many lives have been lost as orcs or goblins continue to raid outlying farms and raze caravans. Supplies are beginning to run low and people become desperate.";
+		this.m.Description = "Greenskins are terrorizing the surrounding lands, and many lives have been lost as orcs or goblins continue to raid outlying farms and raze caravans. Supplies are beginning to run low and people become desperate. Deserters fleeing the carnage are seeking refuge, while mercenaries claiming to be able to protect the locals are seeking coin.";
 		this.m.Icon = "ui/settlement_status/settlement_effect_01.png";
 		this.m.Rumors = [
 			"I heard rumors that vile greenskins are marauding around %settlement%! Is it true? I hope they don\'t make their way over here...",
 			"Did you see the columns of smoke in the evening sky? They are rising over from %settlement% where greenskins are burning and pillaging the countryside.",
-			"Here, take a look at what\'s left of my hand! Can hardly use it anymore on account of it having no fingers since that run-in with greenskins a while ago. Now I hear they are back, marauding around %settlement% right as we speak."
+			"Here, take a look at what\'s left of my hand! Can hardly use it anymore on account of it having no fingers since that run-in with greenskins a while ago. Now I hear they are back, marauding around %settlement% right as we speak.",
+			"I just don\'t understand it. We had bunch of poor sods come by from %settlement% muttering that no noble house can promise them enough fortunes to fight a greenskin army ever again. Even so, a bunch of sheep-headed fools calling themselves sellswords said they were heading in that direction precisely for the coin."
 		];
 	}
 
@@ -33,6 +34,11 @@ this.greenskins_situation <- this.inherit("scripts/entity/world/settlements/situ
 
 		_settlement.resetShop();
 		_settlement.resetRoster(true);
+
+		if (::Math.rand(1, 10) == 1)
+		{
+			_settlement.addSituation(this.new("scripts/entity/world/settlements/situations/legend_militant_townsfolk_situation"), this.getDefaultDays() + ::Math.rand(1, 3));
+		}
 	}
 
 	function onResolved( _settlement )
@@ -66,6 +72,16 @@ this.greenskins_situation <- this.inherit("scripts/entity/world/settlements/situ
 			_draftList.push("legend_man_at_arms_background");
 			_draftList.push("legend_man_at_arms_background");
 		}
+
+		_draftList.push("deserter_background");
+		_draftList.push("deserter_background");
+		_draftList.push("deserter_background");
+		_draftList.push("deserter_background");
+		_draftList.push("sellsword_background");
+		_draftList.push("sellsword_background");
+		_draftList.push("sellsword_background");
+		_draftList.push("hedge_knight_background");
+		_draftList.push("hedge_knight_background");
 	}
 
 });

@@ -1,0 +1,18 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			12.04.2017 (refactored: 03.10.2017)
+ *  @Description:	Options Menu Module - Controls Panel CSS
+ */
+
+.options-menu-module > .dialog .content .controls-panel
+{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	float: left;
+}

@@ -182,7 +182,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		this.starting_scenario.onInit();
 	}
 
-	function onUpdateDraftList( _list, _settlement, _gender = null )
+	function onUpdateDraftList( _list, _gender = null )
 	{
 	}
 
@@ -190,7 +190,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 	{
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 	}
 

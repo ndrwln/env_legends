@@ -1765,6 +1765,18 @@ foreach( k, v in this.Const.World.Spawn )
 	}
 }
 
+gt.Const.World.Common.addHostileUnitsToCombat <- function ( _into, _partyList, _resources, _faction, _minibossify = 0 )
+{
+	local fact = _faction;
+
+	if (this.World.FactionManager.isAlliedWithPlayer(_faction))
+	{
+		fact = this.World.FactionManager.getFactionOfType(this.Const.FactionType.DummyFaction).getID();
+	}
+
+	_minibossify = 0;
+	this.Const.World.Common.addUnitsToCombat(_into, _partyList, _resources, fact, _minibossify);
+};
 gt.Const.World.Common.pickPerks <- function ( _perks, _power )
 {
 	if (_perks.len() == 0)

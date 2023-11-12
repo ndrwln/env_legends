@@ -265,7 +265,7 @@ this.getroottable().Const.LegendMod.hookActor <- function ()
 			}
 
 			local validAttackerToParry = _attacker != null && _attacker.isAlive() && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID();
-			local validSkillToParry = _skill != null && !_skill.isIgnoringRiposte();
+			local validSkillToParry = _skill != null && !_skill.isIgnoringRiposte() && _skill.m.IsWeaponSkill;
 
 			if (this.m.CurrentProperties.IsParrying && !this.getCurrentProperties().IsStunned && validAttackerToParry && validSkillToParry && !_attacker.getCurrentProperties().IsImmuneToDisarm && !_attacker.getSkills().hasSkill("effects.legend_parried"))
 			{

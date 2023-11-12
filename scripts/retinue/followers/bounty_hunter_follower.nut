@@ -16,12 +16,13 @@ this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
 		{
 			return this.getNumberOfNamedItems() >= 1;
 		});
-		this.addSkillRequirement("Have at least one of the following backgrounds: Manhunter, Witch Hunter, Beast Slayer", [
+		this.addSkillRequirement("Have at least one of the following backgrounds: Manhunter, Witch Hunter, Beast Slayer, Bounty Hunter", [
 			"background.witchhunter",
 			"background.beast_slayer",
 			"background.manhunter",
 			"background.legend_companion_melee",
-			"background.legend_companion_ranged"
+			"background.legend_companion_ranged",
+			"background.legend_bounty_hunter"
 		]);
 	}
 

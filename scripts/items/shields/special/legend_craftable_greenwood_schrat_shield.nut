@@ -29,6 +29,18 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		this.m.Icon = "shields/icon_heartwood_shield.png";
 	}
 
+	function getTooltip()
+	{
+		local result = this.shield.getTooltip();
+		result.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Regenerates itself by up to [color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.floor(this.getConditionMax() * 0.1) + "[/color] of maximum durability each turn."
+		});
+		return result;
+	}
+
 	function onEquip()
 	{
 		this.shield.onEquip();

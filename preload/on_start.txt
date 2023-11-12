@@ -1,0 +1,5 @@
+gfx/effects_0.png
+gfx/world_weather.png
+gfx/ui.png
+gfx/fonts/cinzel_bold_20.fnt
+gfx/fonts/cinzel_bold_100.fnt

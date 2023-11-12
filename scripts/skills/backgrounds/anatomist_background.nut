@@ -142,22 +142,6 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 		this.m.BadEnding = "Having fled the %companyname%, %name% the anatomist continued her studies elsewhere. She was admonished by her peers for venturing out in such an uncouth manner and found herself suffering in intellectual mediocrity. Some years later, she made a small contribution to the study of beetles after which she promptly threw herself off a seaside cliff, donating her brain to the rocks and her body to the ocean.";
 	}
 
-	function getTooltip()
-	{
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
-	}
-
 	function onBuildDescription()
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))

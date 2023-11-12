@@ -176,7 +176,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		}
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local bros = _roster.getAll();
 		local garbage = [];

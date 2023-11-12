@@ -6,6 +6,7 @@ this.starting_scenario <- {
 		Difficulty = 1,
 		Order = 0,
 		IsFixedLook = false,
+		CurrentSettlement = null,
 		StashModifier = 0,
 		StartingBusinessReputation = 0,
 		StartingRosterTier = this.Const.Roster.DefaultTier,
@@ -117,11 +118,11 @@ this.starting_scenario <- {
 		}
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement = null )
+	function onUpdateHiringRoster( _roster )
 	{
 	}
 
-	function onUpdateDraftList( _list, _settlement = null, _gender = null )
+	function onUpdateDraftList( _list, _gender = null )
 	{
 		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 	}
@@ -264,6 +265,16 @@ this.starting_scenario <- {
 			]);
 			this.World.Assets.getOrigin().onGenerateBro(bro);
 		}
+	}
+
+	function getCurrentSettlement()
+	{
+		return this.m.CurrentSettlement;
+	}
+
+	function setCurrentSettlement( _settlement )
+	{
+		this.m.CurrentSettlement = ::MSU.asWeakTableRef(_settlement);
 	}
 
 };

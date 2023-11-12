@@ -122,7 +122,7 @@ this.mage_legends_mage_scenario <- this.inherit("scripts/scenarios/world/startin
 		return false;
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		this.addBroToRoster(_roster, "apprentice_background", 4);
 	}

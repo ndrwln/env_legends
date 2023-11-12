@@ -186,7 +186,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 
 	function onBuildDescription()
 	{
-		return "{As far as everyone is is concerned, you have no history — any attempt to force discussion on it will only result in silence or lies.}";
+		return "{As far as everyone is concerned, you have no history — any attempt to force discussion on it will only result in silence or lies.}";
 	}
 
 	function onChangeAttributes()

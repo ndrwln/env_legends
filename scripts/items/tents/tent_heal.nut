@@ -5,7 +5,7 @@ this.tent_heal <- this.inherit("scripts/items/trade/trading_good_item", {
 		this.trading_good_item.create();
 		this.m.ID = "tent.healer_tent";
 		this.m.Name = "Healer\'s Tent";
-		this.m.Description = "Cloth tent woven from sheep wool and wood, comes with healer tools, salves and cots. Having this in your stash upgrades your camp, increasing yoru healing rate and reducing medicine consumption.";
+		this.m.Description = "Cloth tent woven from sheep wool and wood, comes with healer tools, salves and cots. Having this in your stash upgrades your camp, increasing your healing rate and reducing medicine consumption.";
 		this.m.Icon = "tents/tent_heal_70x70.png";
 		this.m.Value = 5000;
 	}

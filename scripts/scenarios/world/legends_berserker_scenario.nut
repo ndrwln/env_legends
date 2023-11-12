@@ -199,11 +199,11 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		return false;
 	}
 
-	function onUpdateDraftList( _list, _settlement, _gender = null )
+	function onUpdateDraftList( _list, _gender = null )
 	{
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		this.addBroToRoster(_roster, "wildwoman_background", 8);
 		this.addBroToRoster(_roster, "wildman_background", 8);

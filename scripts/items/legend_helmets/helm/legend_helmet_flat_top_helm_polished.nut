@@ -6,7 +6,7 @@ this.legend_helmet_flat_top_helm_polished <- this.inherit("scripts/items/legend_
 		this.m.Type = this.Const.Items.HelmetUpgrades.Helm;
 		this.m.ID = "armor.head.legend_helmet_flat_top_helm_polished";
 		this.m.Name = "Hardened Flat Top Helm";
-		this.m.Description = "A outstandingly well made and maintained flat full-metal helmet with noseguard.";
+		this.m.Description = "An outstandingly well made and maintained flat full-metal helmet with noseguard.";
 		this.m.ArmorDescription = this.m.Description;
 		this.m.Variants = [
 			1,

@@ -579,15 +579,15 @@ this.barbarian_king_contract <- this.inherit("scripts/contracts/contract", {
 				local item = this.Const.World.Common.pickHelmet([
 					[
 						1,
-						"scripts/items/legend_helmets/helm/legend_helmet_heavy_plate_helm"
+						"barbarians/heavy_horned_plate_helmet"
 					]
 				]);
-				this.World.Assets.getStash().add(item);
 				this.World.Assets.getStash().makeEmptySlots(1);
+				this.World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + this.Const.Strings.getArticle(item.makeName()) + item.makeName()
 				});
 			}
 

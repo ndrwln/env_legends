@@ -140,3 +140,12 @@
 
 	text-align: right;
 }
+
+.ui-control.campaign .inner-container > .column.is-right .label.is-legends-version
+{
+	right: 3.5rem;
+	bottom: 2.9rem;
+	height: 1.6rem;
+
+	text-align: right;
+}

@@ -35,7 +35,8 @@ gt.Const.FactionType <- {
 	OrientalBandits = 14,
 	Arena = 15,
 	FreeCompany = 16,
-	COUNT = 17
+	DummyFaction = 17,
+	COUNT = 18
 };
 gt.Const.Faction <- {
 	None = 0,
@@ -55,7 +56,8 @@ gt.Const.Faction <- {
 	OrientalBandits = 14,
 	Arena = 15,
 	FreeCompany = 16,
-	COUNT = 17
+	DummyFaction = 17,
+	COUNT = 18
 };
 gt.Const.FactionColor <- [
 	this.createColor("#ffffff"),
@@ -183,7 +185,8 @@ gt.Const.FactionAlliance <- [
 		this.Const.Faction.Civilian,
 		this.Const.Faction.OrientalCityState,
 		this.Const.Faction.NobleHouse
-	]
+	],
+	[]
 ];
 gt.Const.GenericFootprints <- [
 	"world_footprints_n",

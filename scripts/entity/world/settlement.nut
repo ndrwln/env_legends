@@ -1815,7 +1815,8 @@ this.settlement <- this.inherit("scripts/entity/world/location", {
 			s.onUpdateDraftList(draftList);
 		}
 
-		this.World.Assets.getOrigin().onUpdateDraftList(draftList, this);
+		::World.Assets.getOrigin().setCurrentSettlement(this);
+		this.World.Assets.getOrigin().onUpdateDraftList(draftList);
 
 		while (maxRecruits > current.len())
 		{
@@ -1826,7 +1827,7 @@ this.settlement <- this.inherit("scripts/entity/world/location", {
 		}
 
 		this.updateStables(_force);
-		this.World.Assets.getOrigin().onUpdateHiringRoster(roster, this);
+		this.World.Assets.getOrigin().onUpdateHiringRoster(roster);
 	}
 
 	function updateStables( _force = false )

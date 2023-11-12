@@ -55,6 +55,10 @@ $.fn.createListCampaign = function(_campaignData, _classes)
 		var dayName = $('<div class="label is-day-name text-font-normal font-color-disabled font-bottom-shadow"/>');
 		rightColumn.append(dayName);
 
+		// Legends version
+		var legendsVersion = $('<div class="label is-legends-version text-font-small font-color-description font-bottom-shadow"/>');
+		rightColumn.append(legendsVersion);
+
 		// date time
 		var dateTime = $('<div class="label is-date-time text-font-small font-color-disabled font-bottom-shadow"/>');
 		rightColumn.append(dateTime);
@@ -72,6 +76,10 @@ $.fn.createListCampaign = function(_campaignData, _classes)
 		// day name
 		var dayName = $('<div class="label is-day-name text-font-normal font-color-description font-bottom-shadow"/>');
 		rightColumn.append(dayName);
+
+		// Legends version
+		var legendsVersion = $('<div class="label is-legends-version text-font-small font-color-description font-bottom-shadow"/>');
+		rightColumn.append(legendsVersion);
 
 		// date time
 		var dateTime = $('<div class="label is-date-time text-font-small font-color-description font-bottom-shadow"/>');
@@ -154,6 +162,15 @@ $.fn.assignListCampaignDayName = function(_value)
 		label.html(_value);
 	}
 };
+
+$.fn.assignListCampaignLegendsVersion = function(_value)
+{
+	var label = this.find('.label.is-legends-version:first');
+	if (label.length > 0 && _value !== undefined && _value !== null)
+	{
+		label.html(_value);
+	}
+}
 
 $.fn.assignListCampaignDateTime = function(_value)
 {

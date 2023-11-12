@@ -85,6 +85,15 @@ this.add_random_situation_action <- this.inherit("scripts/factions/faction_actio
 			}
 		}
 
+		if (this.m.Settlement.getSize() >= 3 && !::MSU.isKindOf(this.m.Settlement, "city_state"))
+		{
+			if (this.m.Settlement.hasSituation("situation.ambushed_trade_routes") || this.m.Settlement.hasSituation("situation.abducted_children") || this.m.Settlement.hasSituation("situation.disappearing_villagers") || this.m.Settlement.hasSituation("situation.raided") || this.m.Settlement.hasSituation("situation.unhold_attacks"))
+			{
+				possible_situations.push("rallied_militia_situation");
+				possible_situations.push("merc_company_disbands_situation");
+			}
+		}
+
 		if (!this.m.Settlement.isMilitary())
 		{
 			possible_situations.push("local_holiday_situation");

@@ -242,7 +242,7 @@ this.militia_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 		bro.getSprite("socket").setBrush("bust_base_militia");
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local garbage = [];
 		local bros = _roster.getAll();

@@ -145,22 +145,6 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.BadEnding = "Once an Oathtaker to the bone, %name% grew disenchanted with her fellow believers and one night had a dream that they were, in fact, the true heretics. She slew every Oathtaker in reach and then fled out, eventually joining the Oathbringers of all people. Last that was heard of her, she reclaimed Young Anselm\'s skull and smashed it with a hammer. Enraged, her new Oathbringer brothers promptly slew her down. %name%\'s corpse was found stabbed over a hundred times, ashy skull fragments powdering a bloodied, madly grinning face.";
 	}
 
-	function getTooltip()
-	{
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
-	}
-
 	function onBuildDescription()
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))

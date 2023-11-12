@@ -451,7 +451,7 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 		this.World.Flags.set("HasLegendCampTraining", true);
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local garbage = [];
 		local bros = _roster.getAll();

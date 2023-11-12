@@ -122,11 +122,11 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 		return false;
 	}
 
-	function onUpdateDraftList( _list, _settlement, _gender = null )
+	function onUpdateDraftList( _list, _gender = null )
 	{
 	}
 
-	function onUpdateHiringRoster( _roster, _settlement )
+	function onUpdateHiringRoster( _roster )
 	{
 		local _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		this.addBroToRoster(_roster, "assassin_background", 11);
